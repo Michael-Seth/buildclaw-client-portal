@@ -4,7 +4,7 @@ import React from "react";
 import banner from "@/assets/images/CoverA.png";
 import TextContent from "@/components/TextContent";
 
-const Prologue = () => {
+const Proposal = () => {
   return (
     <DefaultLayout>
       <TextContent title="Brand Story"/>
@@ -12,4 +12,4 @@ const Prologue = () => {
   );
 };
 
-export default Prologue;
+export default Proposal;

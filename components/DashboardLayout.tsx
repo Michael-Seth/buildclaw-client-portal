@@ -10,13 +10,13 @@ export default function DefaultLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const logo = "/assets/images/Buildclaw-Logo.png"; // Adjust the path to your logo image
+  const logo = "/assets/images/Buildclaw-Logo.png";
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
       <div className="flex h-screen overflow-hidden">
-        <Sidebar />
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
 
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">

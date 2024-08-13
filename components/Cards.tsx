@@ -1,4 +1,12 @@
+"use client";
 import React from "react";
+import { CardProps } from "@/types/interfaces"; // Import the card data type
+import Link from "next/link";
+import PadlockIcon from "@/assets/svgs/Padlock";
+
+interface CardPropsWithActive extends CardProps {
+  active: boolean;
+}
 
 export function CardOne({
   width,
@@ -8,61 +16,56 @@ export function CardOne({
   category,
   description,
   link1,
-  link2,
-}: {
-  width: string;
-  height: string;
-  clientName: string;
-  title: string;
-  category: string;
-  description: string;
-  link1: string;
-  link2: string;
-}) {
+  active,
+}: CardPropsWithActive) {
   return (
     <div
-      className={`w-full ${width} ${height} px-4 py-3 bg-white rounded-md shadow-md dark:bg-gray-800`}
+      className={`relative w-${width} h-${height} px-4 pt-6 pb-8 bg-white rounded-md shadow-md dark:bg-gray-800`}
     >
-      <div className="flex items-center justify-between">
+      {!active && (
+        <div className="absolute inset-0 w-[40%] mx-auto mt-2 flex flex-col items-center justify-center  bg-opacity-50 rounded-md">
+          <PadlockIcon className="text-gray-100 w-6 h-6" />
+          <span className="text-white p-2 text-center text-sm font-semibold">
+            Sign Contract To Access
+          </span>
+        </div>
+      )}
+
+      <div className="flex items-center justify-between mb-4">
         <span className="text-sm font-light text-gray-800 dark:text-gray-400">
           Courses and MOOCs
         </span>
         <span className="px-3 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full dark:bg-blue-300 dark:text-blue-900">
-          {category}
+          {active ? category : "Pending"}
         </span>
       </div>
 
-      <div>
-        <h1 className="mt-2 text-lg font-semibold text-gray-800 dark:text-white">
-          {clientName} {title}
-        </h1>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          {description}
-        </p>
-      </div>
+      {active && (
+        <>
+          <div>
+            <h1 className="mt-2 text-lg font-semibold text-gray-800 dark:text-white">
+              {clientName} {title}
+            </h1>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+              {description}
+            </p>
+          </div>
 
-      <div>
-        <div className="flex items-center mt-2 text-gray-700 dark:text-gray-200">
-          <span>Visit on:</span>
-          <a
-            className="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline"
-            href={`https://${link1}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {link1}
-          </a>
-          <span>or</span>
-          <a
-            className="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline"
-            href={`https://${link2}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {link2}
-          </a>
-        </div>
-      </div>
+          <div>
+            <div className="flex items-center mt-2 text-gray-700 dark:text-gray-200">
+              <span>Visit on:</span>
+              <Link
+                className="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline"
+                href={`https://${link1}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link1}
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
