@@ -1,0 +1,15 @@
+/* @media print {
+  .page-break {
+    page-break-before: always; 
+    page-break-after: always;  
+    page-break-inside: avoid; 
+    margin-top: 1rem;
+    display: block;
+    page-break-before: auto;
+
+    height: initial !important;
+    overflow: initial !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+} */

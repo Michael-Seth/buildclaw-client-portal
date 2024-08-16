@@ -5,7 +5,7 @@ import React from "react";
 const Project = () => {
   return (
     <DefaultLayout>
-      <TextContent title="Project Overview" active />
+      <TextContent title="Project Overview" />
     </DefaultLayout>
   );
 };

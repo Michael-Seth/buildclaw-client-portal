@@ -1,0 +1,7 @@
+
+const BASE_URL = process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? '';
+const PAYSTACK_PUBLIC_KEY = process.env.PAYSTACK_PUBLIC_KEY ?? '';
+
+const DD_USER = "APP_ACCESS";
+
+export { BASE_URL, DD_USER , PAYSTACK_PUBLIC_KEY};

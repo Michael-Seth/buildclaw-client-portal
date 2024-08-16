@@ -1,14 +1,12 @@
-import Img from "@/assets/images/403.png";
-import Image from "next/image";
+import SecureIcon from "@/assets/svgs/SecureIcon";
 import Link from "next/link";
 
 const UnAuthorized = () => {
   return (
     <div className="grid h-screen place-content-center bg-white px-4">
       <div className="text-center">
-        <Image src={Img} className="mx-auto" width={200} alt="Unauthorized" />
-
-        <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <SecureIcon className="w-28 mx-auto h-24 text-gray-300"/>
+        <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-800 sm:text-4xl">
           Payment Required
         </h1>
 
@@ -16,7 +14,7 @@ const UnAuthorized = () => {
           Please complete your contract to access this section
         </p>
         <Link
-          className="group relative inline-flex items-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500"
+          className="group my-6 relative inline-flex items-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500"
           href="/dashboard/contract"
         >
           <span className="absolute -end-full transition-all group-hover:end-4">

@@ -32,9 +32,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex space-x-4">
-          <button className="px-5 py-2 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
+          <Link href="/auth" className="px-5 py-2 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
             Login
-          </button>
+          </Link >
         </div>
       </div>
     </nav>

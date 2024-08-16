@@ -5,7 +5,7 @@ import React from 'react'
 const Timeline = () => {
     return (
         <DefaultLayout>
-          <TextContent title="Project Timeline" active />
+          <TextContent title="Project Timeline" />
         </DefaultLayout>
       );
 }

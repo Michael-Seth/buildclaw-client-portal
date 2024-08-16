@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import "@/css/satoshi.css";
 import "@/css/style.css";
+import { MyContextProvider } from "@/constants/context/MyContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <MyContextProvider>
+        <body className={inter.className}>{children}</body>
+      </MyContextProvider>
     </html>
   );
 }

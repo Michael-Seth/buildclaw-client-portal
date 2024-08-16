@@ -1,10 +1,10 @@
-import Breadcrumb from "@/components/Breadcrumb";
-import type { Metadata } from "next";
+import MyContextProvider from "@/constants/context/MyContextProvider";
+// import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your client portal",
-};
+// export const metadata: Metadata = {
+//   title: "Login",
+//   description: "Login to your client portal",
+// };
 
 export default function AuthLayout({
   children,
@@ -13,7 +13,9 @@ export default function AuthLayout({
 }>) {
   return (
     <div>
-      <>{children}</>
+      <MyContextProvider>
+        <>{children}</>
+      </MyContextProvider>
     </div>
   );
 }
