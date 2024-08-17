@@ -33,7 +33,7 @@ export function CardOne({
 
       <div className="flex items-center justify-between mb-4">
         <span className="text-sm font-light text-gray-800 dark:text-gray-400">
-          Courses and MOOCs
+          BM Property
         </span>
         <span className="px-3 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full dark:bg-blue-300 dark:text-blue-900">
           {active ? category : "Pending"}
@@ -53,12 +53,10 @@ export function CardOne({
 
           <div>
             <div className="flex items-center mt-2 text-gray-700 dark:text-gray-200">
-              <span>Visit on:</span>
+              <span>Sign contract:</span>
               <Link
                 className="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline"
-                href={`https://${link1}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/dashboard/contract"
               >
                 {link1}
               </Link>

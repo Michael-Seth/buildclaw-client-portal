@@ -8,11 +8,11 @@ const cardData = [
   {
     width: "full",
     height: "auto",
-    clientName: "Client A",
-    title: "Project A",
-    category: "Category A",
-    description: "This is a description for Project A.",
-    link1: "example1.com",
+    clientName: "Evro Lifestyle",
+    title: "Website",
+    category: "Ready To Start",
+    description: "Preview brand story and contract agreement.",
+    link1: "contract",
     active: true,
   },
   {

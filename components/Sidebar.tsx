@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import clientLogo from "@/assets/images/CoverA.png";
+import clientLogo from "@/assets/images/Logo.png";
 import { usePathname } from "next/navigation";
 import ClickOutside from "./ClickOutside";
 import Image from "next/image";
@@ -159,10 +159,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
               alt="avatar"
             />
             <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
-              John Doe
+              [Customer Name]
             </h4>
             <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-              john@example.com
+              [customer@email.com]
             </p>
           </Link>
         </div>

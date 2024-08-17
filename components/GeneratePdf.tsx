@@ -31,12 +31,6 @@ interface PDFTableProps {
 const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
   ({ data, total, email, name, signature }, ref) => {
 
-
-    console.log('data', data)
-    console.log('total', total)
-    console.log('email', email)
-    console.log('name', name)
-    console.log('signature', signature)
     return (
       <div ref={ref}>
         <div className="overflow-hidden min-h-full min-w-full">

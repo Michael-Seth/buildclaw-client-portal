@@ -22,13 +22,13 @@ const PaymentButton = () => {
 
   const componentProps = {
     ...config,
-    text: "Paystack Button Implementation",
+    text: "Pay",
     onSuccess: (reference: Record<any, string>) =>
       handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
 
-  return <PaystackButton {...componentProps} />;
+  return <PaystackButton {...componentProps} className="block py-2 my-8 w-full px-8 bg-slate-900 rounded items-center justify-center ext-sm tracking-wide transition-colors duration-200 text-white" />;
 };
 
 export default PaymentButton;
