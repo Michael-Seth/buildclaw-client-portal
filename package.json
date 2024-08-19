@@ -11,9 +11,15 @@
   "dependencies": {
     "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.2.7",
+    "@types/imap": "^0.8.40",
+    "@types/nodemailer": "^6.4.15",
     "@types/react-signature-canvas": "^1.0.5",
+    "html2canvas": "^1.4.1",
+    "imap": "^0.8.17",
+    "jspdf": "^2.5.1",
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
+    "nodemailer": "^6.9.14",
     "pdf-lib": "^1.17.1",
     "react": "^18",
     "react-dom": "^18",
@@ -26,6 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/node-imap": "^0.9.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.19",

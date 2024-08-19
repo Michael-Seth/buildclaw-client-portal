@@ -14,10 +14,7 @@ interface TextContentProps {
   active?: boolean;
 }
 
-const BrandStoryContent: React.FC<TextContentProps> = ({
-  title,
-  active,
-}) => {
+const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
   if (!active) {
     return <UnAuthorized />;
   }
@@ -50,335 +47,268 @@ const BrandStoryContent: React.FC<TextContentProps> = ({
             </div>
           </header>
         </div>
-        <div className="mt-6 lg:mt-0 lg:mx-6">
-          <h3 className="block bg-gray-800 mt-4 text-2xl font-semibold text-white   rounded-md pl-4">
-          Brand Story
-          </h3>
-          <p className="mt-3 text-sm text-gray-500 md:text-sm">
-          At Evro Lifestyle, dining is an immersive experience where sophistication meets comfort. Located in the vibrant heart of Lagos, Evro Lifestyle isn’t just a place to eat—it’s a destination where every visit feels special. With a dedication to excellence, we offer a refined ambiance, delectable cuisine, and a space that adapts effortlessly to both intimate dinners and lively gatherings.
-          </p>
-          <p className="mt-3 text-sm text-gray-500 md:text-sm">
-          Our story begins with a commitment to craft. Every dish on our menu is a testament to the art of fine dining, meticulously prepared with fresh ingredients to delight the palate. The lounge, designed with a blend of modern elegance and classic charm, provides the perfect backdrop for unwinding and socializing.
-          </p>
-        </div>
-        <div className="mt-6 lg:mt-0 lg:mx-6">
-          <h3 className="block bg-gray-800 mt-4 text-2xl font-semibold text-white   rounded-md pl-4">
-          Vision Statement
-          </h3>
-          <p className="mt-3 text-sm text-gray-500 md:text-sm">“To be the premier destination for luxurious dining and vibrant nightlife, where every detail is crafted to perfection and every guest feels celebrated.”
-          </p>
-        </div>
-        <div className="mt-6 lg:mt-0 lg:mx-6">
-          <h3 className="block bg-gray-800 mt-4 text-2xl font-semibold text-white   rounded-md pl-4">
-          Vision Statement
-          </h3>
-          <p className="mt-3 text-sm text-gray-500 md:text-sm">“To be the premier destination for luxurious dining and vibrant nightlife, where every detail is crafted to perfection and every guest feels celebrated.”
-          </p>
-        </div>
-        <div className="mt-6 lg:mt-0 lg:mx-6">
-          <h3 className="font-semibold mb-2 mt-6 text-2xl bg-gray-800   text-white  rounded-md pl-4">Scope of Work</h3>
-          <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-            1. Deliverables
-          </p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>Design and development of all necessary web pages</li>
-            <li>
-              Implementation of [ package name] features and Implementation of [
-              functionalities]
-            </li>
-            <li>Responsive design for desktop, tablet, and mobile devices.</li>
-          </ul>
-          <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-            2. Timeline
-          </p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>
-              <strong> Project Start Date:</strong> Immediately after payment
-            </li>
-            <li>
-              <strong> Initial Design Presentation:</strong> 2 weeks
-            </li>
-            <li>
-              <strong> Design review and corrections (if any):</strong> 1 week
-            </li>
-            <li>
-              <strong> Development timeframe:</strong> 4 weeks
-            </li>
-            <li>
-              <strong> Testing and debugging:</strong> 1 week
-            </li>
-            <li>
-              <strong> Website / Webapp presentation:</strong> 1 week
-            </li>
-            <li>
-              <strong> Deployment to Live:</strong> 1 week
-            </li>
-          </ul>
-          <p className="py-3">
-            <strong> Total Timeline:</strong> 9 weeks, plus 1 extra week for
-            testing and deployment.
-          </p>
-          <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-            3. Revisions
-          </p>
-          <p className="py-3 text-base">
-            You are entitled to 3 rounds of revisions. Additional revisions
-            might be billed depending on the complexity.
-          </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">
-              Package Selected
-            </h3>
-            <div className="divide-y mb-8 mt-4 divide-gray-400 w-full sm:w-1/2 rounded border border-gray-200 shadow-sm">
-              <div className="p-6 sm:px-8">
-                <h2 className="text-lg font-medium text-gray-900">
-                  Economy
-                  <span className="sr-only">Plan</span>
-                </h2>
+        <div className="bg-gray-100 p-6">
+          <section className="mb-12">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+                Brand Story
+              </h3>
+              <p className="py-3 text-base text-gray-700">
+                At Evro Lifestyle, dining is an immersive experience where
+                sophistication meets comfort. Located in the vibrant heart of
+                Lagos, Evro Lifestyle isn’t just a place to eat—it’s a
+                destination where every visit feels special. With a dedication
+                to excellence, we offer a refined ambiance, delectable cuisine,
+                and a space that adapts effortlessly to both intimate dinners
+                and lively gatherings.
+              </p>
+              <p className="py-3 text-base text-gray-700">
+                Our story begins with a commitment to craft. Every dish on our
+                menu is a testament to the art of fine dining, meticulously
+                prepared with fresh ingredients to delight the palate. The
+                lounge, designed with a blend of modern elegance and classic
+                charm, provides the perfect backdrop for unwinding and
+                socializing.
+              </p>
+            </div>
+          </section>
 
-                <p className="mt-2 sm:mt-4">
-                  <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                    600,000
-                  </strong>
-                </p>
-                <div className="mt-4 block rounded border border-gray-400 bg-gray-400 px-12 py-3 text-center text-sm font-medium text-white sm:mt-6">
-                  Selected
-                </div>
-              </div>
+          <section className="mb-12">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              Vision and Mission Statements
+            </h2>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+                Vision Statement
+              </h3>
+              <p className="py-3 text-base text-gray-700">
+                “To be the premier destination for luxurious dining and vibrant
+                nightlife, where every detail is crafted to perfection and every
+                guest feels celebrated.”
+              </p>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+                Mission Statement
+              </h3>
+              <p className="py-3 text-base text-gray-700">
+                “Evro Lifestyle is committed to delivering exceptional culinary
+                and social experiences that captivate the senses and create
+                lasting memories. We aim to provide an inviting atmosphere,
+                innovative cuisine, and superior service that exceeds
+                expectations.”
+              </p>
+            </div>
+          </section>
 
-              <div className="p-6 sm:px-8">
-                <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                  What's included:
-                </p>
+          <section className="mb-12">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+                User Experience Story
+              </h3>
+              <ol className="list-disc pl-6 space-y-4 text-gray-700">
+                <li>
+                  <strong className="text-gray-900">Discovery Phase:</strong>{" "}
+                  Potential guests encounter Evro Lifestyle through a compelling
+                  Instagram presence or glowing reviews online. The website
+                  serves as an elegant digital gateway, showcasing high-quality
+                  visuals of the restaurant's chic interiors and gourmet
+                  offerings. Users are immediately engaged by the sophisticated
+                  design and enticing content.
+                </li>
+                <li>
+                  <strong className="text-gray-900">
+                    Browsing and Reservation:
+                  </strong>{" "}
+                  The website’s user-friendly design makes navigation
+                  effortless. Visitors can explore the menu, view detailed
+                  descriptions of dishes, and make reservations with ease. The
+                  integrated booking system is intuitive, allowing users to
+                  select dates and times seamlessly. Special promotions and
+                  upcoming events are highlighted, inviting further exploration.
+                </li>
+                <li>
+                  <strong className="text-gray-900">
+                    Arrival and Ambiance:
+                  </strong>{" "}
+                  Guests are welcomed into a warm, stylish environment where the
+                  digital promise is fulfilled. The ambiance and service reflect
+                  the high standards set by the online experience, ensuring a
+                  consistent and memorable visit.
+                </li>
+                <li>
+                  <strong className="text-gray-900">Dining Experience:</strong>{" "}
+                  The menu is presented with clarity and visual appeal, and the
+                  service is attentive and personalized. Digital feedback
+                  options enable guests to share their experiences, contributing
+                  to continuous improvement.
+                </li>
+                <li>
+                  <strong className="text-gray-900">
+                    Post-Visit Engagement:
+                  </strong>{" "}
+                  Post-visit communication includes personalized thank you
+                  emails and invitations to share feedback on social media.
+                  Guests are encouraged to stay connected through updates on new
+                  offerings, events, and exclusive promotions. (Email marketing
+                  campaign service)
+                </li>
+                <li>
+                  <strong className="text-gray-900">
+                    Continuous Improvement:
+                  </strong>{" "}
+                  Customer feedback is actively reviewed and used to enhance the
+                  dining experience. The commitment to evolution ensures that
+                  every visit builds on the last, maintaining a high level of
+                  satisfaction and engagement.
+                </li>
+              </ol>
+            </div>
+          </section>
 
-                <ul className="mt-2 space-y-2 sm:mt-4">
-                  <li className="flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-indigo-700"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4.5 12.75l6 6 9-13.5"
-                      />
-                    </svg>
+          
 
-                    <span className="text-gray-700"> 10 users </span>
+          <section className="mb-12">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              How Brandmeals Enhances Evro Lifestyle
+            </h2>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <p className="text-base text-gray-700 mb-4">
+                At Brandmeals, we're thrilled to collaborate with Evro Lifestyle
+                to elevate their brand through our specialized services. Our
+                approach focuses on delivering a comprehensive digital solution
+                designed to enhance customer engagement and drive revenue
+                growth. Here’s how we plan to achieve this:
+              </p>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+                Website Design and Development
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>
+                  Online Ordering and Reservations: Streamlined systems to
+                  facilitate easy customer interactions and efficient management
+                  of orders and bookings.
+                </li>
+                <li>
+                  Integration with Food Delivery Services: Seamless connections
+                  with platforms like Chowdeck to expand your reach and enhance
+                  convenience for your customers. (Optional)
+                </li>
+                <li>
+                  Additional SEO Services: Strategic enhancements to improve
+                  search engine rankings and attract more diners. (Optional)
+                </li>
+              </ul>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 mt-6 bg-gray-800 text-white p-4 rounded-md">
+                Financial Projections
+              </h3>
+              <div className="text-gray-700 mb-4">
+                <h4 className="text-xl font-semibold mb-2">Assumptions:</h4>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Average Order Value: ₦10,000</li>
+                  <li>Average Reservation Spend: ₦20,000</li>
+                  <li>Average Monthly Reach: 1,000 potential customers</li>
+                </ul>
+                <h4 className="text-xl font-semibold mt-6 mb-2">
+                  Revenue Projections:
+                </h4>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>
+                    <strong>Online Orders:</strong>
                   </li>
-
-                  <li className="flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-indigo-700"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4.5 12.75l6 6 9-13.5"
-                      />
-                    </svg>
-
-                    <span className="text-gray-700"> 2GB of storage </span>
+                  <ul className="list-inside list-disc pl-6 space-y-1">
+                    <li>Estimated Conversion Rate: 10%</li>
+                    <li>Monthly Orders: 1,000 reach * 10% = 100 orders</li>
+                    <li>Average Orders per Day: 4 orders</li>
+                    <li>Monthly Revenue: 100 orders * ₦10,000 = ₦1,000,000</li>
+                  </ul>
+                  <li>
+                    <strong>Reservations:</strong>
                   </li>
-
-                  <li className="flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-indigo-700"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4.5 12.75l6 6 9-13.5"
-                      />
-                    </svg>
-
-                    <span className="text-gray-700"> Email support </span>
+                  <ul className="list-inside list-disc pl-6 space-y-1">
+                    <li>Estimated Conversion Rate: 3%</li>
+                    <li>
+                      Monthly Reservations: 1,000 reach * 3% = 30 reservations
+                    </li>
+                    <li>
+                      Monthly Revenue: 30 reservations * ₦20,000 = ₦600,000
+                    </li>
+                  </ul>
+                  <li>
+                    <strong>Total Monthly Revenue:</strong> ₦1,600,000
                   </li>
-
-                  <li className="flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-red-700"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-
-                    <span className="text-gray-700">Help center access</span>
+                  <li>
+                    <strong>Total Revenue for 6 Months:</strong> ₦1,600,000 * 6
+                    = ₦9,600,000
                   </li>
-
-                  <li className="flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-red-700"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-
-                    <span className="text-gray-700"> Phone support </span>
-                  </li>
-
-                  <li className="flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-red-700"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-
-                    <span className="text-gray-700">Community access</span>
+                  <li>
+                    <strong>Total Revenue for 12 Months:</strong> ₦1,600,000 *
+                    12 = ₦19,200,000
                   </li>
                 </ul>
+                <p className="text-base text-gray-700 mt-4">
+                  <strong>Maximum Cost of Services:</strong> ₦1,500,000
+                </p>
+                <p className="text-base text-gray-700">
+                  These projections exclude revenue from walk-in customers and
+                  transactions outside the online system.
+                </p>
               </div>
             </div>
+          </section>
+          <section className="mb-12">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              Social Media Presence Projection
+            </h2>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white p-4 rounded-md">
+                Current Metrics
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Instagram Followers: 3,898</li>
+                <li>Average Engagement Rate: 3%</li>
+              </ul>
+              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
+                Projected Metrics with Brandmeals’ Services
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Increased Followers: 5,000</li>
+                <li>Improved Engagement Rate: 5%</li>
+              </ul>
+              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
+                Engagement Increase
+              </h3>
+              <p className="text-base text-gray-700">
+                <strong>Current Average Engagement:</strong> 3,898 followers *
+                3% = 117 interactions per post
+              </p>
+              <p className="text-base text-gray-700">
+                <strong>Projected Engagement:</strong> 5,000 followers * 5% =
+                250 interactions per post
+              </p>
+              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
+                Potential Reach Increase
+              </h3>
+              <p className="text-base text-gray-700">
+                <strong>Current Average Reach:</strong> 3,898 followers
+              </p>
+              <p className="text-base text-gray-700">
+                <strong>
+                  Projected Reach with Improved Engagement and Advanced SEO:
+                </strong>{" "}
+                10,000 followers
+              </p>
+            </div>
+          </section>
 
-            <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">Refund Policy</h3>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              1. Initial Stage
-            </p>
-            <p className="py-3 text-base">
-              If the Client requests a refund or cancels the Project at the
-              beginning stage without any major work done, the Client is liable
-              to a 95% refund of whatever has been paid.
-            </p>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              2. Post-Design Approval
-            </p>
-            <p className="py-3 text-base">
-              If the Client decides to cancel or terminate the Project after the
-              design has been submitted for approval, the Client is liable to a
-              50% refund of whatever has been paid.
-            </p>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              3. Post-Development Phase
-            </p>
-            <p className="py-3 text-base">
-              If the Project has reached Phase 2 (development phase) and has
-              been submitted to the Client for review and testing, the Client
-              must provide proof of breach of trust or agreement before
-              requesting a refund. If the breach is valid, the Client can
-              receive a 15% refund of whatever has been paid.
-            </p>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              4. Mediation
-            </p>
-            <p className="py-3 text-base">
-              Both parties agree to attempt to resolve disputes through
-              mediation before pursuing legal action.
-            </p>
-            <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">
-              Responsibilities
-            </h3>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              1. Your Responsibilities
-            </p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>
-                Provide all necessary content (text, images, etc.) throughout
-                the lifecycle of the project.
-              </li>
-              <li>
-                Timely feedback and approvals to ensure the Project stays on
-                schedule.
-              </li>
-            </ul>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              2. Brandmeals Responsibilities
-            </p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>
-                Deliver high-quality design and standard web development
-                architecture.
-              </li>
-              <li>Communicate progress and any potential delays promptly.</li>
-              <li>
-                Provide training on the content management system if
-                applicable..
-              </li>
-            </ul>
-            <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">
-              Intellectual Property
-            </h3>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              1. Ownership
-            </p>
-            <p className="py-3 text-base">
-              Upon full payment, the Client will own the final design, graphics,
-              and website files. Brandmeals shall seek your consent to use the
-              work for portfolio purposes.
-            </p>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              2. Licenses
-            </p>
-            <p className="py-3 text-base">
-              Brandmeals will ensure all materials used in the Project are
-              appropriately licensed or created.
-            </p>
-            <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">
-              Confidentiality
-            </h3>
-            <p className="py-3 text-base">
-              Both parties agree to maintain the confidentiality of any
-              proprietary information and materials.
-            </p>
-            <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">
-              Dispute Resolution
-            </h3>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              1. Mediation
-            </p>
-            <p className="py-3 text-base">
-              In the event of a dispute, both parties agree to attempt to
-              resolve it through mediation before pursuing legal action.
-            </p>
-            <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
-              2. Governing Law
-            </p>
-            <p className="py-3 text-base">
-              This contract shall be governed by the laws of Nigeria.
-            </p>
-            <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4">Acceptance</h3>
-            <p className="py-3 text-base">
-              By signing this contract, both parties agree to the terms and
-              conditions of this contract.
-            </p>
-
+          <section className="mb-12">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <p className="text-base text-gray-700">
+                By leveraging Brandmeals’ expertise, Evro Lifestyle can
+                significantly enhance its digital presence, attract more
+                customers, and achieve substantial revenue growth, all while
+                building a stronger connection with her audience.
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </section>

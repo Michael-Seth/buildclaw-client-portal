@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/css/style.css";
 import { MyContextProvider } from "@/constants/context/MyContext";
+import { contractData } from "@/constants/utils/data";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MyContextProvider>
+      <MyContextProvider data={contractData}>
         <body className={inter.className}>{children}</body>
       </MyContextProvider>
     </html>

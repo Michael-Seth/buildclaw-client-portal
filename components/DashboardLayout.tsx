@@ -1,34 +1,38 @@
 "use client";
 import React, { useState, ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
-
-// import Header from "@/components/Header";
+import Header from "./Header";
+import Announcement from "./Announcement";
 
 export default function DefaultLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const logo = "/assets/images/Buildclaw-Logo.png";
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  return (
-    <>
-      <div className="flex h-screen overflow-hidden">
-        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+  const pathname = usePathname();
 
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-          {/* <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
-          <main className="flex-grow">
-            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-              {children}
-            </div>
-          </main>
+  return (
+    <div className="flex flex-col h-screen overflow-hidden">
+      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <div className="flex h-full">
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <main className="flex-1 flex flex-col overflow-y-auto">
+          {pathname === "/dashboard/contract" && (
+            <Announcement
+              backgroundColor="bg-indigo-600"
+              text="NB:"
+              message="Download A Copy of Your Contract After Successful Payment"
+            />
+          )}{" "}
+          <div className="mx-auto max-w-screen-2xl w-full p-4 md:p-6 2xl:p-10">
+            {children}
+          </div>
           <Footer />
-        </div>
+        </main>
       </div>
-    </>
+    </div>
   );
 }

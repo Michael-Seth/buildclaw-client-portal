@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
 import { useReactToPrint } from "react-to-print";
-import {
-  ContractData,
-  ContractSign,
-  ContractSignHandles,
-} from "@/components/ContractTable";
+import { ContractData } from "@/components/ContractTable";
 import PDFTable from "@/components/GeneratePdf";
 
 interface PrintButtonProps {
@@ -14,6 +10,7 @@ interface PrintButtonProps {
   email: string | null;
   name: string | null;
   signature: string | null;
+  onPaymentSuccessful: boolean;
 }
 
 export const DownloadButton: React.FC<PrintButtonProps> = ({
@@ -22,9 +19,9 @@ export const DownloadButton: React.FC<PrintButtonProps> = ({
   email,
   name,
   signature,
+  onPaymentSuccessful,
 }) => {
   const printRef = React.useRef<HTMLDivElement>(null);
-
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
     documentTitle: "Brandmeals Contract Agreement",
@@ -32,23 +29,15 @@ export const DownloadButton: React.FC<PrintButtonProps> = ({
 
   return (
     <>
-      <div style={{ display: "none" }}>
-        <PDFTable
-          ref={printRef}
-          data={data}
-          total={total}
-          email={email}
-          name={name}
-          signature={signature}
-        />
-      </div>
       <span className="inline-flex mt-6 overflow-hidden rounded-md border bg-white shadow-sm">
         <button
           onClick={handlePrint}
-          className="flex items-center gap-4 border-e px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
+          className={`flex items-center gap-4 border-e px-4 py-2 text-sm font-medium   text-white bg-red-950 focus:relative ${
+            !onPaymentSuccessful ? "cursor-not-allowed bg-gray-300 text-gray-300" : " "
+          }`}
         >
-          <span>Download</span>
-          <svg
+          <span>Download Contract</span>
+          {/* <svg
             width="20"
             height="20"
             viewBox="0 0 24 24"
@@ -68,9 +57,21 @@ export const DownloadButton: React.FC<PrintButtonProps> = ({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg> */}
         </button>
       </span>
+      {onPaymentSuccessful && (
+        <div style={{ display: "none" }}>
+          <PDFTable
+            ref={printRef}
+            data={data}
+            total={total}
+            email={email}
+            name={name}
+            signature={signature}
+          />
+        </div>
+      )}
     </>
   );
 };

@@ -1,34 +1,114 @@
-import { PAYSTACK_PUBLIC_KEY } from "@/constants/http/config";
+import useMyContext from "@/constants/context/useMyContext";
+import { NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY } from "@/constants/http/config";
+import { formatPrice } from "@/constants/utils/helpers";
 import React from "react";
 import { PaystackButton } from "react-paystack";
 
-const config = {
-  reference: new Date().getTime().toString(),
-  email: "michaelseth@gmail.com",
-  amount: 20000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-  publicKey: "pk_test_d2664b1731f8e6b57260d6f6032e4a2b854662af",
-};
+interface PaymentButtonProps {
+  disabled: boolean;
+  amount: number;
+  onPaymentSuccess: () => void;
+}
 
-const PaymentButton = () => {
-  const handlePaystackSuccessAction = (reference: Record<any, string>) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
+const PaymentButton: React.FC<PaymentButtonProps> = ({
+  disabled,
+  amount,
+  onPaymentSuccess,
+}) => {
+  const {
+    state,
+    computedTotal,
+    selectedPackage,
+    recipient,
+    clientName,
+    pendingBalance,
+  } = useMyContext();
+  const partPaymentConfig = {
+    reference: new Date().getTime().toString(),
+    email: "michaelseth@gmail.com",
+    amount: (computedTotal / 2) * 100,
+    publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+  };
+  const fullPaymentConfig = {
+    reference: new Date().getTime().toString(),
+    email: "michaelseth@gmail.com",
+    amount: computedTotal * 100,
+    publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+  };
+
+  const handlePaystackSuccessAction = async (
+    reference: Record<any, string>
+  ) => {
+    const selectedItems = Array.from(state.values());
+
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          recipient,
+          subject: "Brandmeals - Service Payment Successful",
+          items: selectedItems,
+          selectedPackage,
+          total: computedTotal,
+          status: "Paid",
+          pendingBalance,
+          clientName,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Email sent successfully.");
+      } else {
+        console.error("Failed to send email.");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+
+    onPaymentSuccess();
   };
 
   const handlePaystackCloseAction = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
     console.log("User closed Payment");
   };
 
-  const componentProps = {
-    ...config,
-    text: "Pay",
+  const partPaymentProps = {
+    ...partPaymentConfig,
+    text: "Pay 50%",
     onSuccess: (reference: Record<any, string>) =>
       handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
 
-  return <PaystackButton {...componentProps} className="block py-2 my-8 w-full px-8 bg-slate-900 rounded items-center justify-center ext-sm tracking-wide transition-colors duration-200 text-white" />;
+  const fullPaymentProps = {
+    ...fullPaymentConfig,
+    text: "Pay in full",
+    onSuccess: (reference: Record<any, string>) =>
+      handlePaystackSuccessAction(reference),
+    onClose: handlePaystackCloseAction,
+  };
+
+  return (
+    <div className="w-full flex flex-row flex-wrap items-center gap-6">
+      <PaystackButton
+        {...partPaymentProps}
+        className={`block py-2 my-8 l px-8 rounded  text-sm tracking-wide transition-colors duration-200 ${
+          disabled ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
+        } text-white`}
+        disabled={disabled}
+      />
+      <PaystackButton
+        {...fullPaymentProps}
+        className={`block py-2 my-8 l px-8 rounded  text-sm tracking-wide transition-colors duration-200 ${
+          disabled ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
+        } text-white`}
+        disabled={disabled}
+      />
+    </div>
+  );
 };
 
 export default PaymentButton;

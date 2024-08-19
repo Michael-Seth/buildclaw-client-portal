@@ -6,7 +6,7 @@ import BrandStoryContent from "@/components/BrandStoryContent";
 const Proposal = () => {
   return (
     <DefaultLayout>
-      <BrandStoryContent title="Brand Story for Evro Lifestyle Restaurant and Lounge" active/>
+      <BrandStoryContent title="Evro Lifestyle Restaurant and Lounge" active/>
     </DefaultLayout>
   );
 };

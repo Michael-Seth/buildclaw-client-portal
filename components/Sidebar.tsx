@@ -135,7 +135,6 @@ const sidebarLinks = [
       </svg>
     ),
   },
-  // Add more links as needed
 ];
 
 function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
@@ -143,13 +142,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
 
   return (
-    <ClickOutside onClick={() => setSidebarOpen(false)}>
+    <>
       <aside
-        className={`flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 lg:static lg:translate-x-0 ${
-          sidebarOpen
-            ? "translate-x-0 duration-300 ease-linear"
-            : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-30 w-64 bg-white border-r dark:bg-gray-900 dark:border-gray-700 transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:w-64`}
       >
         <div className="flex flex-col items-center mt-6 -mx-2">
           <Link href="/dashboard">
@@ -186,7 +183,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
           </nav>
         </div>
       </aside>
-    </ClickOutside>
+      
+    </>
   );
 }
 
