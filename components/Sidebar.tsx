@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import React from "react";
-import clientLogo from "@/assets/images/Logo.png";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import useLocalStorage from "@/constants/hooks/useLocalStorage";
 
 export interface CustomerData {
   name: string;
@@ -17,13 +15,6 @@ interface SidebarProps {
   setSidebarOpen: (arg: boolean) => void;
   customerData: CustomerData;
 }
-
-const getCustomerNameFromPathname = (pathname: string): string => {
-  // Split the pathname into parts
-  const parts = pathname.split('/');
-  // The customer name is the second part
-  return parts[1] || '';
-};
 
 const sidebarLinks = [
   {
@@ -157,7 +148,6 @@ export default function Sidebar({
   const pathname = usePathname();
 
   const customerName = customerData.name;
-  console.log('customerName', customerName)
 
   return (
     <>

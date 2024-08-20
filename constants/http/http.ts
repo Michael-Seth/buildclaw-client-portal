@@ -25,34 +25,33 @@ const getheader = (token: string, needToken: boolean) => {
 };
 
 export const httpRequest = async (params: HTTPParams) => {
-  try {
-    const { method, body, url, needToken = true, isFormData = false } = params;
-    if (!url) throw new Error("url not set");
-    if (typeof url !== "string") throw new Error("url must be a string");
-    const token = localStorage.getItem(NEXT_PUBLIC_DD_USER);
+  // try {
+  //   const { method, body, url, needToken = true, isFormData = false } = params;
+  //   if (!url) throw new Error("url not set");
+  //   if (typeof url !== "string") throw new Error("url must be a string");
+  //   const token = localStorage.getItem(NEXT_PUBLIC_DD_USER);
 
-    const header = getheader(token as string, needToken);
+  //   const header = getheader(token as string, needToken);
 
-    const options: RequestInit = {
-      method: method || "GET",
-      redirect: "follow",
-      headers: header,
-      body: isFormData ? body : JSON.stringify(body),
-    };
+  //   const options: RequestInit = {
+  //     method: method || "GET",
+  //     redirect: "follow",
+  //     headers: header,
+  //     body: isFormData ? body : JSON.stringify(body),
+  //   };
 
-    const res = await fetch(`${NEXT_PUBLIC_BASE_URL}${url}`, options);
+  //   const res = await fetch(`${NEXT_PUBLIC_BASE_URL}${url}`, options);
 
-    const result = await res?.text();
-    const response = JSON?.parse(result);
+  //   const result = await res?.text();
+  //   const response = JSON?.parse(result);
 
-    if (response.message === "Unauthorized" && needToken) {
-      localStorage.removeItem(NEXT_PUBLIC_DD_USER);
-      sessionStorage.removeItem("persist:root");
-      // store?.dispatch(setIsLoggedIn(false));
-      // window.location.href = "/login";
-    }
-    return response;
-  } catch (error) {
-    //error;
-  }
+  //   if (response.message === "Unauthorized" && needToken) {
+  //     // localStorage.removeItem(NEXT_PUBLIC_DD_USER);
+  //     sessionStorage.removeItem("persist:root");
+  //     // store?.dispatch(setIsLoggedIn(false));
+  //   }
+  //   return response;
+  // } catch (error) {
+  //   //error;
+  // }
 };
