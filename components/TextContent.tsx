@@ -268,7 +268,7 @@ const TextContent: React.FC<TextContentProps> = ({
           <p className="py-3 text-base">
             This contract offers a comprehensive and professional overview of
             each service provided by BrandMeals, including pricing, to ensure
-            you have a clear understanding of the value you're receiving. Please
+            you have a clear understanding of the value you&apos;re receiving. Please
             note that there will be an annual renewal fee of <span className="font-semibold text-blue-900">₦150,000</span> for domain
             and maintenance, which excludes any time-based services. <br /><br />
             By signing this contract, both parties agree to the terms and
