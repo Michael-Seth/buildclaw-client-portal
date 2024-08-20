@@ -6,7 +6,7 @@ import Logo from "@/assets/images/LogoBrandMealsC.png";
 import bgDrop from "@/assets/images/Blackpage.png";
 import bgDropBrown from "@/assets/images/brBrown.png";
 import Image from "next/image";
-import { contractData } from "@/app/dashboard/contract/page";
+import { contractData } from "@/constants/utils/data";
 
 interface TableProps {
   data: Array<{
@@ -31,12 +31,6 @@ interface PDFTableProps {
 const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
   ({ data, total, email, name, signature }, ref) => {
 
-
-    console.log('data', data)
-    console.log('total', total)
-    console.log('email', email)
-    console.log('name', name)
-    console.log('signature', signature)
     return (
       <div ref={ref}>
         <div className="overflow-hidden min-h-full min-w-full">
@@ -488,3 +482,5 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
 );
 
 export default PDFTable;
+
+

@@ -1,34 +1,107 @@
-import { PAYSTACK_PUBLIC_KEY } from "@/constants/http/config";
-import React from "react";
+import useMyContext from "@/constants/context/useMyContext";
+import {
+  NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+  NEXT_PUBLIC_SMTP_USER,
+} from "@/constants/http/config";
+import React, { useCallback, useState } from "react";
 import { PaystackButton } from "react-paystack";
+import { SuccessModal } from "./Modal";
 
-const config = {
-  reference: new Date().getTime().toString(),
-  email: "michaelseth@gmail.com",
-  amount: 20000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-  publicKey: "pk_test_d2664b1731f8e6b57260d6f6032e4a2b854662af",
-};
+interface PaymentButtonProps {
+  disabled: boolean;
+  amount: number;
+  text: string;
+  onPaymentSuccess: () => void;
+}
 
-const PaymentButton = () => {
-  const handlePaystackSuccessAction = (reference: Record<any, string>) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
+const PaymentButton: React.FC<PaymentButtonProps> = ({
+  disabled,
+  amount,
+  text,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const {
+    state,
+    computedTotal,
+    selectedPackage,
+    recipient,
+    clientName,
+    pendingBalance,
+  } = useMyContext();
+
+  const paymentConfig = useCallback(
+    () => ({
+      reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
+      email: NEXT_PUBLIC_SMTP_USER,
+      amount: amount,
+      publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+    }),
+    [amount]
+  );
+  // const selectedItems = Array.from(state.values());
+  // console.log("selectedItems", selectedItems);
+  const handlePaystackSuccessAction = async (
+    reference: Record<any, string>
+  ) => {
+    const selectedItems = Array.from(state.values());
+    console.log("selectedItems", selectedItems);
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          recipient,
+          subject: "Brandmeals - Service Payment Successful",
+          items: selectedItems,
+          selectedPackage,
+          total: computedTotal,
+          status: "Paid",
+          pendingBalance,
+          clientName,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Email sent successfully.");
+      } else {
+        console.error("Failed to send email.");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+
+    setIsModalOpen(true); // Open the modal when payment is successful
   };
 
   const handlePaystackCloseAction = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
     console.log("User closed Payment");
   };
 
-  const componentProps = {
-    ...config,
-    text: "Paystack Button Implementation",
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
+  const paymentProps = {
+    ...paymentConfig(),
+    text,
     onSuccess: (reference: Record<any, string>) =>
       handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
 
-  return <PaystackButton {...componentProps} />;
+  return (
+    <>
+      <PaystackButton
+        {...paymentProps}
+        className={`py-4 w-full flex-grow px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200 ${
+          disabled ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
+        } text-white`}
+        disabled={disabled}
+      />
+      <SuccessModal isOpen={isModalOpen} onClose={handleCloseModal} />
+    </>
+  );
 };
-
 export default PaymentButton;

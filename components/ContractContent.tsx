@@ -113,7 +113,7 @@ const ContractContent = () => {
                 <strong> Deployment to Live:</strong> 1 week
               </li>
             </ul>
-            <p>
+            <p className="py-3">
               <strong> Total Timeline:</strong> 9 weeks, plus 1 extra week for
               testing and deployment.
             </p>

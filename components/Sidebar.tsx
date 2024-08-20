@@ -2,20 +2,32 @@
 
 import Link from "next/link";
 import React from "react";
-import clientLogo from "@/assets/images/CoverA.png";
+import clientLogo from "@/assets/images/Logo.png";
 import { usePathname } from "next/navigation";
-import ClickOutside from "./ClickOutside";
 import Image from "next/image";
 import useLocalStorage from "@/constants/hooks/useLocalStorage";
 
+export interface CustomerData {
+  name: string;
+  email: string;
+  logo: string;
+}
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
+  customerData: CustomerData;
 }
+
+const getCustomerNameFromPathname = (pathname: string): string => {
+  // Split the pathname into parts
+  const parts = pathname.split('/');
+  // The customer name is the second part
+  return parts[1] || '';
+};
 
 const sidebarLinks = [
   {
-    href: "/dashboard",
+    href: `/dashboard`,
     text: "Dashboard",
     icon: (
       <svg
@@ -35,7 +47,7 @@ const sidebarLinks = [
     ),
   },
   {
-    href: "/dashboard/brand-story",
+    href: `/brand-story`,
     text: "Proposal",
     icon: (
       <svg
@@ -62,7 +74,7 @@ const sidebarLinks = [
     ),
   },
   {
-    href: "/dashboard/contract",
+    href:  `/contract`,
     text: "Contract",
     icon: (
       <svg
@@ -82,7 +94,7 @@ const sidebarLinks = [
     ),
   },
   {
-    href: "/dashboard/project",
+    href: `/project`,
     text: "Overview",
     icon: (
       <svg
@@ -109,7 +121,7 @@ const sidebarLinks = [
     ),
   },
   {
-    href: "/dashboard/timeline",
+    href: `/timeline`,
     text: "Timeline",
     icon: (
       <svg
@@ -135,49 +147,55 @@ const sidebarLinks = [
       </svg>
     ),
   },
-  // Add more links as needed
 ];
 
-function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
+export default function Sidebar({
+  sidebarOpen,
+  setSidebarOpen,
+  customerData,
+}: SidebarProps) {
   const pathname = usePathname();
-  const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+
+  const customerName = customerData.name;
+  console.log('customerName', customerName)
 
   return (
-    <ClickOutside onClick={() => setSidebarOpen(false)}>
+    <>
       <aside
-        className={`flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 lg:static lg:translate-x-0 ${
-          sidebarOpen
-            ? "translate-x-0 duration-300 ease-linear"
-            : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-30 w-64 bg-white border-r dark:bg-gray-900 dark:border-gray-700 transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:w-64`}
       >
         <div className="flex flex-col items-center mt-6 -mx-2">
-          <Link href="/dashboard">
+          <div>
             <Image
-              className="object-cover w-24 h-24 mx-2 rounded-full"
-              src={clientLogo}
+              className="object-cover bg-gray-900 w-24 h-24 mx-2 rounded-full"
+              src={customerData?.logo} // Use customerData? for logo
               alt="avatar"
+              width={90}
+              height={90}
             />
             <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
-              John Doe
+              {customerData?.name} {/* Use customerData? for name */}
             </h4>
             <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-              john@example.com
+              {customerData?.email} {/* Use customerData for email */}
             </p>
-          </Link>
+          </div>
         </div>
         <div className="flex flex-col justify-between flex-1 mt-6">
           <nav>
             {sidebarLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={`/${customerName}${link.href}`}
                 className={`flex items-center px-4 py-2 mt-5 rounded-lg transition-colors duration-300 transform ${
                   pathname === link.href
                     ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
                     : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 }`}
-                onClick={() => setPageName(link.href)}
+                onClick={() => setSidebarOpen(false)} 
+                
               >
                 {link.icon}
                 <span className="mx-4 font-medium">{link.text}</span>
@@ -186,8 +204,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
           </nav>
         </div>
       </aside>
-    </ClickOutside>
+    </>
   );
 }
-
-export default Sidebar;
