@@ -15,6 +15,7 @@ import useMyContext from "@/constants/context/useMyContext";
 const Contract: React.FC = () => {
   const formRef = useRef<ContractSignHandles>(null);
   const { state, computedTotal, setState } = useMyContext();
+  const selectedItems = Array.from(state.values());
 
   const total = computedTotal;
   const payStackTotal = computedTotal * 100;
@@ -25,18 +26,17 @@ const Contract: React.FC = () => {
     email: string;
     signature: string | null;
   } | null>(null);
-  const [showAdditionalComponents, setShowAdditionalComponents] = useState(false);
+  const [showAdditionalComponents, setShowAdditionalComponents] =
+    useState(false);
 
   const handleProceed = () => {
-    console.log('state', state);
+    console.log("state", state);
 
-    // Check if the state is empty or has zero length
     if (!state || state.size === 0) {
-      // Assuming contractData is an array and you want to add the first item
       const firstItem = contractData[0];
 
       if (firstItem) {
-        setState(prev => {
+        setState((prev) => {
           const updated = new Map(prev);
           updated.set(firstItem.id, firstItem);
           return updated;
@@ -44,7 +44,7 @@ const Contract: React.FC = () => {
       }
     }
 
-    setShowAdditionalComponents(true); // Show additional components when proceed button is clicked
+    setShowAdditionalComponents(true);
   };
   const handleUpdateFormData = (isFormValid: boolean) => {
     const data = formRef.current?.getFormData();
@@ -60,6 +60,15 @@ const Contract: React.FC = () => {
     <>
       <TextContent title="Contract Agreement" active />
       <ContractTable data={contractData} onProceed={handleProceed} />
+      <DownloadButton
+        data={selectedItems}
+        total={total}
+        email={formData?.email || null}
+        name={formData?.fullName || null}
+        signature={formData?.signature || null}
+        onPaymentSuccessful={true}
+      />
+
       {showAdditionalComponents && (
         <>
           <ContractSign ref={formRef} onFormDataChange={handleUpdateFormData} />
@@ -77,15 +86,6 @@ const Contract: React.FC = () => {
               onPaymentSuccess={() => setDownloadButton(true)}
             />
           </div>
-
-          <DownloadButton
-            data={contractData}
-            total={total}
-            email={formData?.email || null}
-            name={formData?.fullName || null}
-            signature={formData?.signature || null}
-            onPaymentSuccessful={downloadButton}
-          />
         </>
       )}
     </>
