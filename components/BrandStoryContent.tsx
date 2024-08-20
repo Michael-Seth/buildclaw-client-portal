@@ -110,7 +110,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   Potential guests encounter Evro Lifestyle through a compelling
                   Instagram presence or glowing reviews online. The website
                   serves as an elegant digital gateway, showcasing high-quality
-                  visuals of the restaurant's chic interiors and gourmet
+                  visuals of the restaurant&apos;s chic interiors and gourmet
                   offerings. Users are immediately engaged by the sophisticated
                   design and enticing content.
                 </li>
@@ -172,7 +172,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
             </h2>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <p className="text-base text-gray-700 mb-4">
-                At Brandmeals, we're thrilled to collaborate with Evro Lifestyle
+                At Brandmeals, we&apos;re thrilled to collaborate with Evro Lifestyle
                 to elevate their brand through our specialized services. Our
                 approach focuses on delivering a comprehensive digital solution
                 designed to enhance customer engagement and drive revenue

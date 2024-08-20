@@ -5,10 +5,6 @@ import useMyContext from "@/constants/context/useMyContext";
 import { formatPrice } from "@/constants/utils/helpers";
 import React, {
   forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
 } from "react";
 
 export interface ContractData {
@@ -195,5 +191,7 @@ const ContractTable = forwardRef<HTMLDivElement, ContractTableProps>(
     );
   }
 );
+
+ContractTable.displayName = 'ContractTable';
 
 export default ContractTable;

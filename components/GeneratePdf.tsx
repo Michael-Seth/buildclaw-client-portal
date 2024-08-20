@@ -29,7 +29,7 @@ interface PDFTableProps {
   signature?: string | null;
 }
 
-const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
+const PDFTable = forwardRef<HTMLDivElement, PDFTableProps>(
   ({ data, total, email, name, signature }, ref) => {
     const {
       selectedPackage,
@@ -103,7 +103,7 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                 <p className="py-3 text-base">
                   Brandmeals agrees to design and develop a website for the 
                   {clientName} according to the specifications outlined in this
-                  contract. The website will be referred to as the "Project" in
+                  contract. The website will be referred to as the &quot;Project&quot; in
                   this document.
                 </p>
                 <h3 className="font-semibold mb-2 mt-6 text-2xl">
@@ -188,7 +188,7 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
 
                       <div className="p-6 sm:px-8">
                         <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                          What's included:
+                          What&apos;s included:
                         </p>
                         <div className="mt-8 space-y-4">
                           {selectedPackage.features.map((feature, index) => (
@@ -384,10 +384,12 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                   </span>
                 </h3>
                 {signature && (
-                  <img
+                  <Image
                     className=" px-4 py-2 w-1/4 border-b-2"
                     src={signature}
                     alt="Signature"
+                    width={25}
+                    height={25}
                   />
                 )}
               </article>
@@ -415,5 +417,7 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
     );
   }
 );
+
+PDFTable.displayName = 'PDFTable';
 
 export default PDFTable;

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { httpRequest } from "../../http/http";
-import { DD_USER } from "../../http/config";
+import { NEXT_PUBLIC_DD_USER } from "../../http/config";
 import { LoginDto } from "./authTypes";
 
 
@@ -27,7 +27,7 @@ export const login = createAsyncThunk(
                 result.status === "success" &&
                 result.data.accessToken
             ) {
-                localStorage.setItem(DD_USER, result.data.accessToken);
+                localStorage.setItem(NEXT_PUBLIC_DD_USER, result.data.accessToken);
                 return fulfillWithValue(result);
             } else {
                 const wrongRole = {

@@ -71,7 +71,7 @@ const ContractContent = () => {
             <p className="py-3 text-base">
               Brandmeals agrees to design and develop a website for the Client
               according to the specifications outlined in this contract. The
-              website will be referred to as the "Project" in this document.
+              website will be referred to as the &quot;Project&quot; in this document.
             </p>
             <h3 className="font-semibold mb-2 mt-6 text-2xl">Scope of Work</h3>
             <p className="text-xl mt-5 mb-3 font-medium text-gray-900">
@@ -146,7 +146,7 @@ const ContractContent = () => {
 
               <div className="p-6 sm:px-8">
                 <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                  What's included:
+                  What&apos;s included:
                 </p>
 
                 <ul className="mt-2 space-y-2 sm:mt-4">
