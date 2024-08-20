@@ -45,7 +45,7 @@ export const SuccessModal = ({
             </div>
           </div>
 
-          <div className="mt-5 sm:flex sm:items-center sm:justify-between">
+          <div className="mt-5 flex items-center justify-center">
             <div className="sm:flex sm:items-center ">
               <DownloadButton
                 data={contractData}

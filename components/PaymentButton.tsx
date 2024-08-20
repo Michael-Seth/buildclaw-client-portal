@@ -38,13 +38,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     }),
     [amount]
   );
-  // const selectedItems = Array.from(state.values());
-  // console.log("selectedItems", selectedItems);
+
   const handlePaystackSuccessAction = async (
     reference: Record<any, string>
   ) => {
     const selectedItems = Array.from(state.values());
-    console.log("selectedItems", selectedItems);
+
     try {
       const response = await fetch("/api/email", {
         method: "POST",

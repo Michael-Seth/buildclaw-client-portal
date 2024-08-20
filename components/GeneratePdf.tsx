@@ -7,6 +7,7 @@ import bgDrop from "@/assets/images/Blackpage.png";
 import bgDropBrown from "@/assets/images/brBrown.png";
 import Image from "next/image";
 import { contractData } from "@/constants/utils/data";
+import useMyContext from "@/constants/context/useMyContext";
 
 interface TableProps {
   data: Array<{
@@ -30,6 +31,11 @@ interface PDFTableProps {
 
 const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
   ({ data, total, email, name, signature }, ref) => {
+    const {
+      selectedPackage,
+      recipient,
+      clientName,
+    } = useMyContext();
 
     return (
       <div ref={ref}>
@@ -53,8 +59,7 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
               </div>
             </div>
             <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-              <div className="flex flex-col items-start gap-4 md:flex-row md:items-center justify-between">
-                <div className="">&nbsp;</div>
+              <div className="flex flex-col items-end gap-4 md:flex-row md:items-center justify-between">
                 <div className="flex flex-col items-end gap-4">
                   <div className="flex items-center gap-4 ">
                     <p>Brandmeals</p>
@@ -85,10 +90,10 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                     <div className="inline-flex items-center mr-3 text-sm text-gray-900">
                       <div>
                         <p className="text-xl font-bold text-gray-900">
-                          Client Name
+                          {clientName}
                         </p>
                         <p className="text-base text-gray-500 dark:text-gray-400">
-                          Client email address
+                          {recipient}
                         </p>
                       </div>
                     </div>
@@ -96,8 +101,8 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                 </header>
                 <h3 className="font-semibold text-2xl">Project Overview</h3>
                 <p className="py-3 text-base">
-                  Brandmeals agrees to design and develop a website for the
-                  [Client] according to the specifications outlined in this
+                  Brandmeals agrees to design and develop a website for the 
+                  {clientName} according to the specifications outlined in this
                   contract. The website will be referred to as the "Project" in
                   this document.
                 </p>
@@ -109,10 +114,13 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>Design and development of all necessary web pages</li>
-                  <li>
-                    Implementation of [ package name] features and
-                    Implementation of [ functionalities]
-                  </li>
+                  {selectedPackage && (
+                    <li>
+                      Implementation of {selectedPackage.name} features and
+                      functionalities
+                    </li>
+                  )}
+
                   <li>
                     Responsive design for desktop, tablet, and mobile devices.
                   </li>
@@ -129,8 +137,7 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                     <strong> Initial Design Presentation:</strong> 2 weeks
                   </li>
                   <li>
-                    <strong> Design review and corrections (if any):</strong> 1
-                    week
+                    <strong> Design review and corrections:</strong> 1 week
                   </li>
                   <li>
                     <strong> Development timeframe:</strong> 4 weeks
@@ -156,150 +163,70 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                   You are entitled to 3 rounds of revisions. Additional
                   revisions might be billed depending on the complexity.
                 </p>
-                <h3 className="font-semibold mb-2 mt-6 text-2xl">
-                  Package Selected
-                </h3>
-                <div className="divide-y mb-8 mt-4 divide-gray-400 w-full sm:w-1/2 rounded border border-gray-200 shadow-sm">
-                  <div className="p-6 sm:px-8">
-                    <h2 className="text-lg font-medium text-gray-900">
-                      Economy
-                      <span className="sr-only">Plan</span>
-                    </h2>
 
-                    <p className="mt-2 sm:mt-4">
-                      <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                        600,000
-                      </strong>
-                    </p>
-                    <div className="mt-4 block rounded border border-gray-400 bg-gray-400 px-12 py-3 text-center text-sm font-medium text-white sm:mt-6">
-                      Selected
+                {selectedPackage && (
+                  <div>
+                    <h3 className="font-semibold mb-2 mt-6 text-2xl">
+                      Package Selected
+                    </h3>
+                    <div className="divide-y mb-8 mt-4 divide-gray-400 w-full sm:w-1/2 rounded border border-gray-200 shadow-sm">
+                      <div className="p-6 sm:px-8">
+                        <h2 className="text-lg font-medium text-gray-900">
+                          {selectedPackage.name}
+                          <span className="sr-only">Plan</span>
+                        </h2>
+
+                        <p className="mt-2 sm:mt-4">
+                          <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                            {selectedPackage.price}
+                          </strong>
+                        </p>
+                        <div className="mt-4 block rounded border border-gray-400 bg-gray-400 px-12 py-3 text-center text-sm font-medium text-white sm:mt-6">
+                          Selected
+                        </div>
+                      </div>
+
+                      <div className="p-6 sm:px-8">
+                        <p className="text-lg font-medium text-gray-900 sm:text-xl">
+                          What's included:
+                        </p>
+                        <div className="mt-8 space-y-4">
+                          {selectedPackage.features.map((feature, index) => (
+                            <div key={index} className="flex items-center">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={`w-5 h-5 ${
+                                  feature.included
+                                    ? "text-blue-500"
+                                    : "text-red-400"
+                                }`}
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                {feature.included ? (
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clipRule="evenodd"
+                                  />
+                                ) : (
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                                    clipRule="evenodd"
+                                  />
+                                )}
+                              </svg>
+                              <span className="mx-4 text-gray-700 dark:text-gray-200 text-sm">
+                                {feature.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="p-6 sm:px-8">
-                    <p className="text-lg font-medium text-gray-900 sm:text-xl">
-                      What's included:
-                    </p>
-
-                    <ul className="mt-2 space-y-2 sm:mt-4">
-                      <li className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5 text-indigo-700"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 12.75l6 6 9-13.5"
-                          />
-                        </svg>
-
-                        <span className="text-gray-700"> 10 users </span>
-                      </li>
-
-                      <li className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5 text-indigo-700"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 12.75l6 6 9-13.5"
-                          />
-                        </svg>
-
-                        <span className="text-gray-700"> 2GB of storage </span>
-                      </li>
-
-                      <li className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5 text-indigo-700"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 12.75l6 6 9-13.5"
-                          />
-                        </svg>
-
-                        <span className="text-gray-700"> Email support </span>
-                      </li>
-
-                      <li className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5 text-red-700"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-
-                        <span className="text-gray-700">
-                          Help center access
-                        </span>
-                      </li>
-
-                      <li className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5 text-red-700"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-
-                        <span className="text-gray-700"> Phone support </span>
-                      </li>
-
-                      <li className="flex items-center gap-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5 text-red-700"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-
-                        <span className="text-gray-700">Community access</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                )}
 
                 <h3 className="font-semibold mb-2 mt-6 text-2xl">
                   Refund Policy
@@ -418,7 +345,7 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                 <h4 className="font-medium mb-2 mt-6 text-lg">
                   Additional Services
                 </h4>
-                <table className="w-full min-w-full bg-white border border-gray-200">
+                {data && <table className="w-full min-w-full bg-white border border-gray-200">
                   <thead>
                     <tr className="bg-gray-100">
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
@@ -436,30 +363,38 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
                           {item.serviceName}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                          <strong>
-                          ₦{formatPrice(item.price)}
-                          </strong>
+                          <strong>{formatPrice(item.price)}</strong>
                         </td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table>}
 
-                <h3 className="my-8 font-semibold text-lg">
-                  Total: <span>₦{formatPrice(total)}</span>
-                </h3>
+                {total && <h3 className="my-8 font-semibold text-lg">
+                  Total: <span>{formatPrice(total)}</span>
+                </h3>}
                 <h3 className="mt-6 mb-2 font-normal text-base">
-                  Name: <span className=" px-4 py-1 border-b-2">{name && name}</span>
+                  Name:
+                  <span className=" px-4 py-1 border-b-2">{name && name}</span>
                 </h3>
                 <h3 className="my-2 font-normal text-base">
-                  Email: <span className=" px-4 py-1 border-b-2">{email && email}</span>
+                  Email:
+                  <span className=" px-4 py-1 border-b-2">
+                    {email && email}
+                  </span>
                 </h3>
-                {signature && <img className=" px-4 py-2 w-1/4 border-b-2" src={signature} alt="Signature" />}
+                {signature && (
+                  <img
+                    className=" px-4 py-2 w-1/4 border-b-2"
+                    src={signature}
+                    alt="Signature"
+                  />
+                )}
               </article>
             </div>
           </div>
           <footer
-            className="text-white fixed bottom-0 h-32 min-w-max w-full"
+            className="text-white h-32 min-w-max w-full"
             style={{
               backgroundImage: `url(${bgDropBrown.src})`,
               backgroundSize: "cover",
@@ -482,5 +417,3 @@ const PDFTable = React.forwardRef<HTMLDivElement, PDFTableProps>(
 );
 
 export default PDFTable;
-
-
