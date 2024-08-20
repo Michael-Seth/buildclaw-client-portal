@@ -1,3 +1,4 @@
+"use client"
 import useMyContext from "@/constants/context/useMyContext";
 import {
   NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,

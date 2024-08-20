@@ -49,7 +49,7 @@ export const httpRequest = async (params: HTTPParams) => {
       localStorage.removeItem(NEXT_PUBLIC_DD_USER);
       sessionStorage.removeItem("persist:root");
       // store?.dispatch(setIsLoggedIn(false));
-      window.location.href = "/login";
+      // window.location.href = "/login";
     }
     return response;
   } catch (error) {
