@@ -41,22 +41,3 @@ export default function DefaultLayout({ children, customerData }: DefaultLayoutP
     </div>
   );
 }
-
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const customers = await fetchCustomers();
-//   const paths = customers.map((customer) => ({
-//     params: { customerName: customer.name },
-//   }));
-
-//   return { paths, fallback: false };
-// };
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const customerName = context.params?.customerName as string;
-//   const customerData = await getCustomerData(customerName);
-
-//   return {
-//     props: { customerData },
-//   };
-// };
