@@ -1,16 +1,32 @@
 module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'brandmeals.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
   async redirects() {
     return [
       {
-        source: "/auth",
-        destination: "/auth/login",
-        permanent: true,
-      },
-      {
         source: "/",
-        destination: "/dashboard",
+        destination: "https://brandmeals.com/blog/",
         permanent: true,
       },
+      // {
+      //   source: "/",
+      //   destination: "/evro-lifestyle/dashboard",
+      //   permanent: true,
+      // },
     ];
   },
 };

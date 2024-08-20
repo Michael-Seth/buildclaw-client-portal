@@ -26,8 +26,8 @@ export const PositiveAlert = () => {
 
         <div className="flex-1">
           <strong className="block font-medium text-gray-900">
-            {" "}
-            Changes saved{" "}
+            
+            Changes saved
           </strong>
 
           <p className="mt-1 text-sm text-gray-700">

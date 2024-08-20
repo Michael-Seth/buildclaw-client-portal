@@ -1,20 +1,25 @@
 import useMyContext from "@/constants/context/useMyContext";
-import { NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY } from "@/constants/http/config";
-import { formatPrice } from "@/constants/utils/helpers";
-import React from "react";
+import {
+  NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+  NEXT_PUBLIC_SMTP_USER,
+} from "@/constants/http/config";
+import React, { useCallback, useState } from "react";
 import { PaystackButton } from "react-paystack";
+import { SuccessModal } from "./Modal";
 
 interface PaymentButtonProps {
   disabled: boolean;
   amount: number;
+  text: string;
   onPaymentSuccess: () => void;
 }
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
   disabled,
   amount,
-  onPaymentSuccess,
+  text,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const {
     state,
     computedTotal,
@@ -23,24 +28,23 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     clientName,
     pendingBalance,
   } = useMyContext();
-  const partPaymentConfig = {
-    reference: new Date().getTime().toString(),
-    email: "michaelseth@gmail.com",
-    amount: (computedTotal / 2) * 100,
-    publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
-  };
-  const fullPaymentConfig = {
-    reference: new Date().getTime().toString(),
-    email: "michaelseth@gmail.com",
-    amount: computedTotal * 100,
-    publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
-  };
 
+  const paymentConfig = useCallback(
+    () => ({
+      reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
+      email: NEXT_PUBLIC_SMTP_USER,
+      amount: amount,
+      publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+    }),
+    [amount]
+  );
+  // const selectedItems = Array.from(state.values());
+  // console.log("selectedItems", selectedItems);
   const handlePaystackSuccessAction = async (
     reference: Record<any, string>
   ) => {
     const selectedItems = Array.from(state.values());
-
+    console.log("selectedItems", selectedItems);
     try {
       const response = await fetch("/api/email", {
         method: "POST",
@@ -68,47 +72,36 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       console.error("Error sending email:", error);
     }
 
-    onPaymentSuccess();
+    setIsModalOpen(true); // Open the modal when payment is successful
   };
 
   const handlePaystackCloseAction = () => {
     console.log("User closed Payment");
   };
 
-  const partPaymentProps = {
-    ...partPaymentConfig,
-    text: "Pay 50%",
-    onSuccess: (reference: Record<any, string>) =>
-      handlePaystackSuccessAction(reference),
-    onClose: handlePaystackCloseAction,
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
   };
 
-  const fullPaymentProps = {
-    ...fullPaymentConfig,
-    text: "Pay in full",
+  const paymentProps = {
+    ...paymentConfig(),
+    text,
     onSuccess: (reference: Record<any, string>) =>
       handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
 
   return (
-    <div className="w-full flex flex-row flex-wrap items-center gap-6">
+    <>
       <PaystackButton
-        {...partPaymentProps}
-        className={`block py-2 my-8 l px-8 rounded  text-sm tracking-wide transition-colors duration-200 ${
+        {...paymentProps}
+        className={`py-4 w-full flex-grow px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200 ${
           disabled ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
         } text-white`}
         disabled={disabled}
       />
-      <PaystackButton
-        {...fullPaymentProps}
-        className={`block py-2 my-8 l px-8 rounded  text-sm tracking-wide transition-colors duration-200 ${
-          disabled ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
-        } text-white`}
-        disabled={disabled}
-      />
-    </div>
+      <SuccessModal isOpen={isModalOpen} onClose={handleCloseModal} />
+    </>
   );
 };
-
 export default PaymentButton;

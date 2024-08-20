@@ -170,7 +170,7 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
     const [agreementChecked, setAgreementChecked] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
 
-    const { setRecipient, setClientName } = useMyContext();
+    const { setRecipient, setClientName, setSignature } = useMyContext();
 
     const sigCanvas = useRef<SignatureCanvas | null>(null);
 
@@ -209,6 +209,10 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
       const signature = sigCanvas.current
         ?.getTrimmedCanvas()
         .toDataURL("image/png");
+      if (signature) {
+        setSignature(signature);
+        console.log("Signature saved:", signature);
+      }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -277,7 +281,7 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
                 onChange={() => setAgreementChecked(!agreementChecked)}
               />
             </span>
-            <p className=" cursor-pointer pl-4 pt-4 sm:pl-0 sm:pt-0">
+            <p className=" cursor-pointer pl-1">
               I agree to the terms of this contract
             </p>
           </div>

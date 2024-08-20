@@ -106,7 +106,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
               </h3>
               <ol className="list-disc pl-6 space-y-4 text-gray-700">
                 <li>
-                  <strong className="text-gray-900">Discovery Phase:</strong>{" "}
+                  <strong className="text-gray-900">Discovery Phase:</strong>
                   Potential guests encounter Evro Lifestyle through a compelling
                   Instagram presence or glowing reviews online. The website
                   serves as an elegant digital gateway, showcasing high-quality
@@ -117,7 +117,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                 <li>
                   <strong className="text-gray-900">
                     Browsing and Reservation:
-                  </strong>{" "}
+                  </strong>
                   The website’s user-friendly design makes navigation
                   effortless. Visitors can explore the menu, view detailed
                   descriptions of dishes, and make reservations with ease. The
@@ -128,14 +128,14 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                 <li>
                   <strong className="text-gray-900">
                     Arrival and Ambiance:
-                  </strong>{" "}
+                  </strong>
                   Guests are welcomed into a warm, stylish environment where the
                   digital promise is fulfilled. The ambiance and service reflect
                   the high standards set by the online experience, ensuring a
                   consistent and memorable visit.
                 </li>
                 <li>
-                  <strong className="text-gray-900">Dining Experience:</strong>{" "}
+                  <strong className="text-gray-900">Dining Experience:</strong>
                   The menu is presented with clarity and visual appeal, and the
                   service is attentive and personalized. Digital feedback
                   options enable guests to share their experiences, contributing
@@ -144,7 +144,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                 <li>
                   <strong className="text-gray-900">
                     Post-Visit Engagement:
-                  </strong>{" "}
+                  </strong>
                   Post-visit communication includes personalized thank you
                   emails and invitations to share feedback on social media.
                   Guests are encouraged to stay connected through updates on new
@@ -154,7 +154,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                 <li>
                   <strong className="text-gray-900">
                     Continuous Improvement:
-                  </strong>{" "}
+                  </strong>
                   Customer feedback is actively reviewed and used to enhance the
                   dining experience. The commitment to evolution ensures that
                   every visit builds on the last, maintaining a high level of
@@ -293,7 +293,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
               <p className="text-base text-gray-700">
                 <strong>
                   Projected Reach with Improved Engagement and Advanced SEO:
-                </strong>{" "}
+                </strong>
                 10,000 followers
               </p>
             </div>

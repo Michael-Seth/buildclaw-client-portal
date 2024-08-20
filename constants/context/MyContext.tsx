@@ -4,11 +4,6 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { ContractData } from "@/components/ContractTable";
 import { Plan } from "@/components/PricingCard";
 
-// interface MyContextType {
-//   state: Set<string>;
-//   setState: (value: Set<string> | ((val: Set<string>) => Set<string>)) => void;
-// }
-
 export interface Item {
   id: string;
   serviceName: string;
@@ -23,6 +18,8 @@ interface MyContextProps {
   setComputedTotal: React.Dispatch<React.SetStateAction<number>>;
   recipient: string;
   setRecipient: React.Dispatch<React.SetStateAction<string>>;
+  signature: string;
+  setSignature: React.Dispatch<React.SetStateAction<string>>;
   clientName: string;
   setClientName: React.Dispatch<React.SetStateAction<string>>;
   selectedPackage: Plan | null;
@@ -49,6 +46,7 @@ export const MyContextProvider: React.FC<{
   ); // Default total
   const [recipient, setRecipient] = useState<string>("");
   const [clientName, setClientName] = useState<string>("");
+  const [signature, setSignature] = useState<string>("");
   const [selectedPackage, setSelectedPackage] = useState<Plan | null>(null);
   const [status, setStatus] = useState<string>("");
   const [pendingBalance, setPendingBalance] = useState<number>(0);
@@ -57,7 +55,7 @@ export const MyContextProvider: React.FC<{
     const total = data.reduce((sum, item) => {
       const price = item.price > 0 && state.has(item.id) ? item.price : 0;
       return sum + price;
-    }, 400000);
+    }, 0);
     setComputedTotal(total);
   }, [state, data]);
 
@@ -70,6 +68,8 @@ export const MyContextProvider: React.FC<{
         setComputedTotal,
         recipient,
         setRecipient,
+        signature,
+        setSignature,
         clientName,
         setClientName,
         selectedPackage,

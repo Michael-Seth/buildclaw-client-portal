@@ -1,9 +1,9 @@
-"use client"
 import DefaultLayout from "@/components/DashboardLayout";
 import React from "react";
-import Login from "../auth/login/page";
 import { CardOne } from "@/components/Cards";
-import { Tabs } from "@/components/MiscComponent";
+import { fetchCustomers } from "@/lib/customers";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 const cardData = [
   {
@@ -38,30 +38,27 @@ const cardData = [
   },
 ];
 
-const Dashboard = () => {
+
+const Dashboard = async () => {
+
   return (
     <>
-      <DefaultLayout>
-        <h2 className="font-semibold md:text-3xl mb-8">Client Portal</h2>
-
-        {/* <Tabs /> */}
-
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
-          {cardData.map((card, index) => (
-            <CardOne
-              key={index}
-              width={card.width}
-              height={card.height}
-              clientName={card.clientName}
-              title={card.title}
-              category={card.category}
-              description={card.description}
-              link1={card.link1}
-              active={card.active}
-            />
-          ))}
-        </div>
-      </DefaultLayout>
+      <h2 className="font-semibold md:text-3xl mb-8">Client Portal</h2>
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
+        {cardData.map((card, index) => (
+          <CardOne
+            key={index}
+            width={card.width}
+            height={card.height}
+            clientName={card.clientName}
+            title={card.title}
+            category={card.category}
+            description={card.description}
+            link1={card.link1}
+            active={card.active}
+          />
+        ))}
+      </div>
     </>
   );
 };

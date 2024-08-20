@@ -14,18 +14,33 @@ import { Item } from "@/constants/context/MyContext";
 import { formatPrice } from "@/constants/utils/helpers";
 
 export async function POST(request: NextRequest) {
-  const { recipient, subject, items } = await request.json();
+  const {
+    recipient,
+    subject,
+    items,
+    selectedPackage,
+    total,
+    status,
+    pendingBalance,
+    clientName,
+  } = await request.json();
 
   const itemsTableRows = items
     .map(
       (item: Item) => `
     <tr>
-      <td style="border: 1px solid #ddd; padding: 10px;">${
-        item.serviceName
-      }</td>
-      <td style="border: 1px solid #ddd; padding: 10px;">${item.status}</td>
-      <td style="border: 1px solid #ddd; padding: 10px; text-align: right;">${formatPrice(item.price)}</td>
-    </tr>
+              <td style="padding: 10px">
+                <strong style="display: block; margin-bottom: 4px"
+                  >${item.serviceName}</strong
+                >
+                <span style="font-size: 14px; color: #2c2c2d"
+                  >${item.status}</span
+                >
+              </td>
+              <td style="padding: 10px; font-weight: 500; text-align: right">
+              ${formatPrice(item.price)}
+              </td>
+            </tr>
   `
     )
     .join("");
@@ -66,14 +81,44 @@ export async function POST(request: NextRequest) {
         <div class="content" style="padding: 30px; text-align: left; color: #111015">
           <h2 style="color: #531507;">Thank You for Choosing Brandmeals!</h2>
 
-          <h1 style="color: #333333; font-size: large">Dear Customer,</h1>
+          <h1 style="color: #333333; font-size: large">Dear ${clientName},</h1>
           <p style="font-size: 14px; line-height: 2">Thank you for choosing Brandmeals! We are delighted to confirm your purchase of our services. Below is a summary of the services you have selected, including their descriptions and prices:</p>
-          
+          <table style="width: 100%; border-radius: 10px; margin-top: 20px">
+            <thead>
+              <tr style="background-color: #691302; color: #ffffff">
+                <th style="padding: 10px; text-align: left">Selected Package</th>
+                <th
+                  style="
+                    padding: 10px;
+                    font-weight: 400;
+                    background-color: #f4f4f4;
+                    color: #2c2c2d;
+                    text-align: center;
+                  "
+                >
+                  ${selectedPackage?.name}
+                </th>
+              </tr>
+              <tr style="background-color: #691302; color: #ffffff">
+                <th style="padding: 10px; text-align: left">Amount</th>
+                <th
+                  style="
+                    padding: 10px;
+                    font-weight: 400;
+                    background-color: #f4f4f4;
+                    color: #2c2c2d;
+                    text-align: center;
+                  "
+                >
+                  ${formatPrice(selectedPackage?.price)}
+                </th>
+              </tr>
+            </thead>
+          </table>
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
               <thead>
-                  <tr style="background-color: #f8f9fa;">
+                  <tr style="background-color: #691302; color: #ffffff;">
                       <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Service</th>
-                      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Description</th>
                       <th style="border: 1px solid #ddd; padding: 10px; text-align: right;">Price</th>
                   </tr>
               </thead>
@@ -82,6 +127,55 @@ export async function POST(request: NextRequest) {
               </tbody>
           </table>
           
+          
+
+          <table style="width: 100%; border-radius: 10px; margin-top: 20px">
+            <thead>
+              <tr style="background-color: #691302; color: #ffffff">
+                <th style="padding: 10px; text-align: left">Total</th>
+                <th
+                  style="
+                    padding: 10px;
+                    font-weight: 500;
+                    background-color: #f4f4f4;
+                    color: #2c2c2d;
+                    text-align: center;
+                  "
+                >
+                  ${formatPrice(total)}
+                </th>
+              </tr>
+              <tr style="background-color: #691302; color: #ffffff">
+                <th style="padding: 10px; text-align: left">Status</th>
+                <th
+                  style="
+                    padding: 10px;
+                    font-weight: 500;
+                    background-color: #0dbd59;
+                    color: #ffffff;
+                    text-align: center;
+                  "
+                >
+                  ${status}
+                </th>
+              </tr>
+              <tr style="background-color: #691302; color: #ffffff">
+                <th style="padding: 10px; text-align: left">Pending Balance</th>
+                <th
+                  style="
+                    padding: 10px;
+                    font-weight: 500;
+                    background-color: #f4f4f4;
+                    color: #2c2c2d;
+                    text-align: center;
+                  "
+                >
+                  ${formatPrice(pendingBalance)}
+                </th>
+              </tr>
+            </thead>
+          </table>
+
           <p style="margin-top: 20px; font-size: 14px; line-height: 2">If you have any questions or need further assistance, please don’t hesitate to reach out to us. We are here to help!</p>
           <p style="margin-top: 20px; font-size: 14px; line-height: 2">Thank you once again for your trust in Brandmeals. We look forward to working with you and supporting your business’s success.</p>
           

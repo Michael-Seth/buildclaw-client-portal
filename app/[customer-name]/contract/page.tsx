@@ -14,7 +14,7 @@ import useMyContext from "@/constants/context/useMyContext";
 
 const Contract: React.FC = () => {
   const formRef = useRef<ContractSignHandles>(null);
-  const { state, computedTotal } = useMyContext();
+  const { state, computedTotal, setState } = useMyContext();
 
   const total = computedTotal;
   const payStackTotal = computedTotal * 100;
@@ -25,13 +25,27 @@ const Contract: React.FC = () => {
     email: string;
     signature: string | null;
   } | null>(null);
-  const [showAdditionalComponents, setShowAdditionalComponents] = useState(false); // New state for controlling visibility
-
+  const [showAdditionalComponents, setShowAdditionalComponents] = useState(false);
 
   const handleProceed = () => {
+    console.log('state', state);
+
+    // Check if the state is empty or has zero length
+    if (!state || state.size === 0) {
+      // Assuming contractData is an array and you want to add the first item
+      const firstItem = contractData[0];
+
+      if (firstItem) {
+        setState(prev => {
+          const updated = new Map(prev);
+          updated.set(firstItem.id, firstItem);
+          return updated;
+        });
+      }
+    }
+
     setShowAdditionalComponents(true); // Show additional components when proceed button is clicked
   };
-
   const handleUpdateFormData = (isFormValid: boolean) => {
     const data = formRef.current?.getFormData();
     if (isFormValid && data) {
@@ -43,16 +57,27 @@ const Contract: React.FC = () => {
   };
 
   return (
-    <DefaultLayout>
-      <ContractTable data={contractData} onProceed={handleProceed}  />
+    <>
+      <TextContent title="Contract Agreement" active />
+      <ContractTable data={contractData} onProceed={handleProceed} />
       {showAdditionalComponents && (
         <>
           <ContractSign ref={formRef} onFormDataChange={handleUpdateFormData} />
-          <PaymentButton
-            disabled={!isPaymentButtonEnabled}
-            amount={payStackTotal}
-            onPaymentSuccess={() => setDownloadButton(true)}
-          />
+          <div className="w-full flex flex-col md:flex-row my-8 items-center gap-4">
+            <PaymentButton
+              disabled={!isPaymentButtonEnabled}
+              amount={payStackTotal / 2}
+              text={"Pay 50%"}
+              onPaymentSuccess={() => setDownloadButton(true)}
+            />
+            <PaymentButton
+              disabled={!isPaymentButtonEnabled}
+              amount={payStackTotal}
+              text={"Pay Full"}
+              onPaymentSuccess={() => setDownloadButton(true)}
+            />
+          </div>
+
           <DownloadButton
             data={contractData}
             total={total}
@@ -63,13 +88,13 @@ const Contract: React.FC = () => {
           />
         </>
       )}
-    </DefaultLayout>
+    </>
   );
 };
 
 export default Contract;
 
 {
-  /* <TextContent title="Contract Agreement" active />
+  /*
    */
 }

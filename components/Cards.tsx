@@ -3,6 +3,7 @@ import React from "react";
 import { CardProps } from "@/types/interfaces"; // Import the card data type
 import Link from "next/link";
 import PadlockIcon from "@/assets/svgs/Padlock";
+import Contract from "@/app/[customer-name]/contract/page";
 
 interface CardPropsWithActive extends CardProps {
   active: boolean;
@@ -56,9 +57,9 @@ export function CardOne({
               <span>Sign contract:</span>
               <Link
                 className="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline"
-                href="/dashboard/contract"
+                href={link1}
               >
-                {link1}
+                Contract
               </Link>
             </div>
           </div>

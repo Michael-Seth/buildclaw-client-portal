@@ -215,7 +215,7 @@ const TextContent: React.FC<TextContentProps> = ({
           </ul>
           <p className="mt-4 text-gray-800 text-sm">
             This is the total number of pages included in your package. If you
-            would like to add an additional page, it will cost an extra{" "}
+            would like to add an additional page, it will cost an extra
             <span className="font-semibold text-blue-900">₦30,000</span>.
             However, you have the flexibility to switch or replace any of these
             standard pages with another page of your choice without any

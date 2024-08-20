@@ -15,14 +15,17 @@ export interface Plan {
   features: Feature[];
 }
 
-// PricingCard component that takes a single plan as a prop
 const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
-
-  const { setSelectedPackage } = useMyContext();
+  const { selectedPackage, setSelectedPackage, computedTotal, setComputedTotal } = useMyContext();
 
   const handleSelect = () => {
     setSelectedPackage(plan);
-  }; 
+
+    // Update the computed total
+    if (plan.price > 0) {
+      setComputedTotal((computedTotal + plan.price) - 400000 );
+    }
+  };
 
   return (
     <div className="dark:bg-gray-900 max-w-72 mx-auto border rounded-lg dark:border-gray-700">
@@ -39,9 +42,13 @@ const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
           {plan.price > 0 ? formatPrice(plan.price) : "Contact sales"}
         </h2>
 
-        <button           onClick={handleSelect}
- className="w-full px-4 py-2 mt-6 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-          Select
+        <button
+          onClick={handleSelect}
+          className={`w-full px-4 py-2 mt-6 tracking-wide text-white capitalize transition-colors duration-300 transform ${
+            selectedPackage?.name === plan.name ? "bg-green-600" : "bg-blue-600 hover:bg-blue-500"
+          } rounded-md focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80`}
+        >
+          {selectedPackage?.name === plan.name ? "Selected" : "Select"}
         </button>
       </div>
       <hr className="border-gray-200 dark:border-gray-700" />
