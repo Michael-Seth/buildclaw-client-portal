@@ -1,17 +1,19 @@
 "use client";
-import DefaultLayout from "@/components/DashboardLayout";
 import TextContent from "@/components/TextContent";
 import React, { useRef, useState } from "react";
 import ContractTable, { ContractData } from "../../../components/ContractTable";
 import { DownloadButton } from "@/assets/svgs/DownloadIcon";
-import PaymentButton from "@/components/PaymentButton";
-import ContractContent from "@/components/ContractContent";
+// import PaymentButton from "@/components/PaymentButton";
 import ContractSign, {
   ContractSignHandles,
 } from "@/components/ContractSignature";
 import { contractData } from "@/constants/utils/data";
 import useMyContext from "@/constants/context/useMyContext";
-
+import dynamic from "next/dynamic";
+const PaymentButton = dynamic(
+  () => import("../../../components/PaymentButton"),
+  { ssr: false }
+);
 const Contract: React.FC = () => {
   const formRef = useRef<ContractSignHandles>(null);
   const { state, computedTotal, setState } = useMyContext();
@@ -29,23 +31,6 @@ const Contract: React.FC = () => {
   const [showAdditionalComponents, setShowAdditionalComponents] =
     useState(false);
 
-  const handleProceed = () => {
-    console.log("state", state);
-
-    if (!state || state.size === 0) {
-      const firstItem = contractData[0];
-
-      if (firstItem) {
-        setState((prev) => {
-          const updated = new Map(prev);
-          updated.set(firstItem.id, firstItem);
-          return updated;
-        });
-      }
-    }
-
-    setShowAdditionalComponents(true);
-  };
   const handleUpdateFormData = (isFormValid: boolean) => {
     const data = formRef.current?.getFormData();
     if (isFormValid && data) {
@@ -56,18 +41,28 @@ const Contract: React.FC = () => {
     }
   };
 
+  const handleProceed = () => {
+    console.log('state', state);
+
+    if (!state || state.size === 0) {
+      const firstItem = contractData[0];
+
+      if (firstItem) {
+        setState(prev => {
+          const updated = new Map(prev);
+          updated.set(firstItem.id, firstItem);
+          return updated;
+        });
+      }
+    }
+
+    setShowAdditionalComponents(true); 
+  };
+
   return (
     <>
       <TextContent title="Contract Agreement" active />
       <ContractTable data={contractData} onProceed={handleProceed} />
-      <DownloadButton
-        data={selectedItems}
-        total={total}
-        email={formData?.email || null}
-        name={formData?.fullName || null}
-        signature={formData?.signature || null}
-        onPaymentSuccessful={true}
-      />
 
       {showAdditionalComponents && (
         <>
@@ -86,6 +81,14 @@ const Contract: React.FC = () => {
               onPaymentSuccess={() => setDownloadButton(true)}
             />
           </div>
+          <DownloadButton
+            data={selectedItems}
+            total={total}
+            email={formData?.email || null}
+            name={formData?.fullName || null}
+            signature={formData?.signature || null}
+            onPaymentSuccessful={downloadButton}
+          />
         </>
       )}
     </>
@@ -93,8 +96,3 @@ const Contract: React.FC = () => {
 };
 
 export default Contract;
-
-{
-  /*
-   */
-}

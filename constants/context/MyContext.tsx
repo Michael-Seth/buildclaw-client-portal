@@ -32,6 +32,7 @@ interface MyContextProps {
 
 const MyContext = createContext<MyContextProps | undefined>(undefined);
 
+
 export const MyContextProvider: React.FC<{
   children: ReactNode;
   data: ContractData[];
@@ -55,7 +56,7 @@ export const MyContextProvider: React.FC<{
     const total = data.reduce((sum, item) => {
       const price = item.price > 0 && state.has(item.id) ? item.price : 0;
       return sum + price;
-    }, 0);
+    }, 400000);
     setComputedTotal(total);
   }, [state, data]);
 
