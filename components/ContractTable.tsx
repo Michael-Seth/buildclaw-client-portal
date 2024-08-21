@@ -21,7 +21,6 @@ const ContractTable = forwardRef<HTMLDivElement, ContractTableProps>(
   ({ data }, ref) => {
     const { state, setState, computedTotal, setComputedTotal } = useMyContext();
 
-    console.log('computedTotal In Table', computedTotal)
 
     // const handleToggle = (item: Item) => {
     //   setState((prev) => {

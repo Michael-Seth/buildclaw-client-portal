@@ -22,7 +22,6 @@ const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
     computedTotal,
     setComputedTotal,
   } = useMyContext();
-  console.log("computedTotal in Packages", computedTotal);
 
   // const handleSelect = () => {
   //   console.log("Selected Package", selectedPackage?.price);
@@ -60,14 +59,11 @@ const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
   //   }
   // };
   const handleSelect = () => {
-    console.log("Selected Package", selectedPackage?.price);
-    console.log("Current Plan", plan.price);
   
     if (selectedPackage?.name === plan.name) {
       // Removing the selected package
       const prevPackagePrice = selectedPackage.price;
       const newPriceOrTotal = computedTotal - prevPackagePrice;
-      console.log("Price in 1st IF", newPriceOrTotal);
   
       setComputedTotal(newPriceOrTotal);
       setSelectedPackage(null);
@@ -77,13 +73,11 @@ const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
         // Remove the previous package price and add the new one
         const prevPackagePrice = selectedPackage.price;
         const newPriceOrTotal = computedTotal - prevPackagePrice + plan.price;
-        console.log("Price in 2nd ELSE IF", newPriceOrTotal);
   
         setComputedTotal(newPriceOrTotal);
       } else {
         // Adding the new package price
         const newPriceOrTotal = computedTotal + plan.price;
-        console.log("Price in 1st Else Else", newPriceOrTotal);
   
         setComputedTotal(newPriceOrTotal);
       }

@@ -17,3 +17,10 @@ export const formatPrice = (price: number) => {
     return formattedName;
   }
   
+  export function extractCustomerUrl(path: string): string {
+    const customerName = path.split('/')[1];
+
+  
+    return customerName;
+  }
+  

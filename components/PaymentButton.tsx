@@ -29,7 +29,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     recipient,
     clientName,
     pendingBalance,
-     setToastMessage,
+    showToast,
     setPendingBalance,
   } = useMyContext();
 
@@ -37,7 +37,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     () => ({
       reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
       email: NEXT_PUBLIC_SMTP_USER,
-      amount: amount,
+      amount: 3000,
       channels: ["card"],
       publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
     }),
@@ -68,7 +68,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       });
 
       if (response.ok) {
-        setToastMessage("Payment successful. An email has been sent to you.")
+        showToast("Payment successful. An email has been sent to you.")
       } else {
         console.error("Failed to send email.");
       }
