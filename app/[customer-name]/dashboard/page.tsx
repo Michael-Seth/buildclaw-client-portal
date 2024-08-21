@@ -1,15 +1,24 @@
+"use client"
 import DefaultLayout from "@/components/DashboardLayout";
 import React from "react";
 import { CardOne } from "@/components/Cards";
 import { fetchCustomers } from "@/lib/customers";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, usePathname } from "next/navigation";
+import { extractCustomerName } from "@/constants/utils/helpers";
 
+
+
+
+
+const Dashboard = async () => {
+const pathName = usePathname();
+const customerName = extractCustomerName(pathName);
 const cardData = [
   {
     width: "full",
-    height: "auto",
-    clientName: "Evro Lifestyle",
+    height: "64",
+    clientName: customerName,
     title: "Website",
     category: "Ready To Start",
     description: "Preview brand story and contract agreement.",
@@ -18,7 +27,7 @@ const cardData = [
   },
   {
     width: "full",
-    height: "auto",
+    height: "64",
     clientName: "Client B",
     title: "Project B",
     category: "Category B",
@@ -28,7 +37,7 @@ const cardData = [
   },
   {
     width: "full",
-    height: "auto",
+    height: "64",
     clientName: "Client C",
     title: "Project C",
     category: "Category C",
@@ -37,10 +46,6 @@ const cardData = [
     active: false,
   },
 ];
-
-
-const Dashboard = async () => {
-
   return (
     <>
       <h2 className="font-semibold md:text-3xl mb-8">Client Portal</h2>

@@ -10,19 +10,19 @@ import { contractData } from "@/constants/utils/data";
 import useMyContext from "@/constants/context/useMyContext";
 
 interface TableProps {
-  data: Array<{
-    id: string;
-    serviceName: string;
-    price: number;
-    status: string;
-  }>;
+  // data: Array<{
+  //   id: string;
+  //   serviceName: string;
+  //   price: number;
+  //   status: string;
+  // }>;
   total: number;
   name?: string;
   email?: string;
 }
 
 interface PDFTableProps {
-  data: typeof contractData;
+  // data: typeof contractData;
   total: number;
   email?: string | null;
   name?: string | null;
@@ -30,12 +30,14 @@ interface PDFTableProps {
 }
 
 const PDFTable = forwardRef<HTMLDivElement, PDFTableProps>(
-  ({ data, total, email, name, signature }, ref) => {
+  ({ total, email, name, signature }, ref) => {
     const {
       selectedPackage,
       recipient,
       clientName,
+      state
     } = useMyContext();
+    const stateArray = Array.from(state.values());
 
     return (
       <div ref={ref}>
@@ -345,7 +347,7 @@ const PDFTable = forwardRef<HTMLDivElement, PDFTableProps>(
                 <h4 className="font-medium mb-2 mt-6 text-lg">
                   Additional Services
                 </h4>
-                {data && <table className="w-full min-w-full bg-white border border-gray-200">
+                {state.size > 0 && <table className="w-full min-w-full bg-white border border-gray-200">
                   <thead>
                     <tr className="bg-gray-100">
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
@@ -357,7 +359,7 @@ const PDFTable = forwardRef<HTMLDivElement, PDFTableProps>(
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((item) => (
+                    {stateArray.map((item) => (
                       <tr key={item.id} className="border-b">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {item.serviceName}

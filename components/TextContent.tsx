@@ -59,8 +59,8 @@ const TextContent: React.FC<TextContentProps> = ({
             </div>
           </header>
         </div>
-        <div className="mt-6 lg:mt-0 lg:mx-6">
-          <h3 className="block bg-gray-800 mt-4 py-3 text-2xl font-semibold text-white   rounded-md pl-4">
+        <div className="mt-6 lg:mt-0 lg:mx-6 p-3 rounded-lg shadow-sm">
+          <h3 className="block bg-gray-900 mt-4 py-3 text-2xl font-semibold text-white   rounded-md pl-4">
             Project Overview
           </h3>
           <p className="py-3 text-base">
@@ -68,8 +68,8 @@ const TextContent: React.FC<TextContentProps> = ({
             lifestlye according to the specifications outlined in this contract.
           </p>
         </div>
-        <div className="mt-6 lg:mt-0 lg:mx-6">
-          <h3 className="font-semibold mb-2 py-3 mt-6 text-2xl bg-gray-800   text-white  rounded-md pl-4">
+        <div className="mt-6 lg:mt-0 lg:mx-6 p-3 rounded-lg shadow-sm">
+          <h3 className="font-semibold mb-2 py-3 mt-6 text-2xl bg-gray-900   text-white  rounded-md pl-4">
             Scope of Work
           </h3>
           <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
@@ -120,11 +120,11 @@ const TextContent: React.FC<TextContentProps> = ({
             You are entitled to 3 rounds of revisions. Additional revisions
             might be billed depending on the complexity.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Our Packages
           </h3>
           <Pricing plans={plans} />
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Refund Policy
           </h3>
           <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
@@ -160,7 +160,7 @@ const TextContent: React.FC<TextContentProps> = ({
             Both parties agree to attempt to resolve disputes through mediation
             before pursuing legal action.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Responsibilities
           </h3>
           <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
@@ -189,7 +189,7 @@ const TextContent: React.FC<TextContentProps> = ({
               Provide training on the content management system if applicable..
             </li>
           </ul>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Standard Pages
           </h3>
           <ul className="list-disc pl-5 space-y-2">
@@ -216,13 +216,13 @@ const TextContent: React.FC<TextContentProps> = ({
           </ul>
           <p className="mt-4 text-gray-800 text-sm">
             This is the total number of pages included in your package. If you
-            would like to add an additional page, it will cost an extra
-            <span className="font-semibold text-blue-900">₦30,000</span>.
+            would like to add an additional page, it will cost an extra 
+            <span className="font-semibold text-blue-900"> ₦30,000</span>.
             However, you have the flexibility to switch or replace any of these
             standard pages with another page of your choice without any
             additional cost.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Intellectual Property
           </h3>
           <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
@@ -240,14 +240,14 @@ const TextContent: React.FC<TextContentProps> = ({
             Brandmeals will ensure all materials used in the Project are
             appropriately licensed or created.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Confidentiality
           </h3>
           <p className="py-3 text-base">
             Both parties agree to maintain the confidentiality of any
             proprietary information and materials.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Dispute Resolution
           </h3>
           <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
@@ -263,7 +263,7 @@ const TextContent: React.FC<TextContentProps> = ({
           <p className="py-3 text-base">
             This contract shall be governed by the laws of Nigeria.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-800   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Acceptance
           </h3>
           <p className="py-3 text-base">

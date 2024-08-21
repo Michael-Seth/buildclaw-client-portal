@@ -1,7 +1,5 @@
 "use client";
-import TextContent from "@/components/TextContent";
 import React, { useRef, useState } from "react";
-import ContractTable, { ContractData } from "../../../components/ContractTable";
 import { DownloadButton } from "@/assets/svgs/DownloadIcon";
 // import PaymentButton from "@/components/PaymentButton";
 import ContractSign, {
@@ -14,13 +12,30 @@ const PaymentButton = dynamic(
   () => import("../../../components/PaymentButton"),
   { ssr: false }
 );
+const TextContent = dynamic(
+  () => import("../../../components/TextContent"),
+  { ssr: false }
+);
+
+const ContractTable = dynamic(
+  () => import("../../../components/ContractTable"),
+  { ssr: false }
+);
+
+const TotalAndProceed = dynamic(
+  () => import("../../../components/TotalComponent"),
+  { ssr: false }
+);
+
 const Contract: React.FC = () => {
   const formRef = useRef<ContractSignHandles>(null);
-  const { state, computedTotal, setState } = useMyContext();
+  const { state, selectedPackage, computedTotal, setState, setPendingBalance } = useMyContext();
   const selectedItems = Array.from(state.values());
 
   const total = computedTotal;
   const payStackTotal = computedTotal * 100;
+  const payStackHalfTotal = computedTotal / 2;
+
   const [isPaymentButtonEnabled, setIsPaymentButtonEnabled] = useState(false);
   const [downloadButton, setDownloadButton] = useState(false);
   const [formData, setFormData] = useState<{
@@ -42,13 +57,12 @@ const Contract: React.FC = () => {
   };
 
   const handleProceed = () => {
-    console.log('state', state);
-
-    if (!state || state.size === 0) {
+    if (!state || state.size === 0 && !selectedPackage) {
       const firstItem = contractData[0];
+      const aPackage = contractData[0];
 
       if (firstItem) {
-        setState(prev => {
+        setState((prev) => {
           const updated = new Map(prev);
           updated.set(firstItem.id, firstItem);
           return updated;
@@ -56,13 +70,28 @@ const Contract: React.FC = () => {
       }
     }
 
-    setShowAdditionalComponents(true); 
+    if (!selectedPackage) {
+      const firstItem = contractData[0];
+
+      if (firstItem) {
+        setState((prev) => {
+          const updated = new Map(prev);
+          updated.set(firstItem.id, firstItem);
+          return updated;
+        });
+      }
+    }
+
+    setPendingBalance(payStackHalfTotal);
+
+    setShowAdditionalComponents(true);
   };
 
   return (
     <>
       <TextContent title="Contract Agreement" active />
-      <ContractTable data={contractData} onProceed={handleProceed} />
+      <ContractTable data={contractData} />
+      <TotalAndProceed computedTotal={computedTotal} onProceed={handleProceed} />
 
       {showAdditionalComponents && (
         <>
@@ -70,7 +99,7 @@ const Contract: React.FC = () => {
           <div className="w-full flex flex-col md:flex-row my-8 items-center gap-4">
             <PaymentButton
               disabled={!isPaymentButtonEnabled}
-              amount={payStackTotal / 2}
+              amount={payStackHalfTotal}
               text={"Pay 50%"}
               onPaymentSuccess={() => setDownloadButton(true)}
             />

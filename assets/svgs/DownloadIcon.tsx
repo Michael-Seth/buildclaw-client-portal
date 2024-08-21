@@ -3,6 +3,7 @@ import React from "react";
 import { useReactToPrint } from "react-to-print";
 import { ContractData } from "@/components/ContractTable";
 import PDFTable from "@/components/GeneratePdf";
+import useMyContext from "@/constants/context/useMyContext";
 
 interface PrintButtonProps {
   data: ContractData[];
@@ -27,6 +28,11 @@ export const DownloadButton: React.FC<PrintButtonProps> = ({
     documentTitle: "Brandmeals Contract Agreement",
   });
 
+  const {
+    state
+  } = useMyContext();
+
+  
   return (
     <>
       <span className="inline-flex mt-6 overflow-hidden rounded-md border bg-white shadow-sm">
@@ -44,7 +50,6 @@ export const DownloadButton: React.FC<PrintButtonProps> = ({
         <div style={{ display: "none" }}>
           <PDFTable
             ref={printRef}
-            data={data}
             total={total}
             email={email}
             name={name}

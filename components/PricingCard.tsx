@@ -16,17 +16,81 @@ export interface Plan {
 }
 
 const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
-  const { selectedPackage, setSelectedPackage, computedTotal, setComputedTotal } = useMyContext();
+  const {
+    selectedPackage,
+    setSelectedPackage,
+    computedTotal,
+    setComputedTotal,
+  } = useMyContext();
+  console.log("computedTotal in Packages", computedTotal);
 
+  // const handleSelect = () => {
+  //   console.log("Selected Package", selectedPackage?.price);
+  //   console.log("Current Plan", plan.price);
+
+  //   if (selectedPackage?.name === plan.name) {
+  //     const prevPackagePrice = 400000;
+  //     const currentPackagePrice = plan.price;
+  //     const theNewComputedTotal = currentPackagePrice - prevPackagePrice;
+  //     const newPriceOrTotal = theNewComputedTotal + computedTotal;
+  //     console.log("Price in  1st IF", newPriceOrTotal);
+
+  //     setComputedTotal(newPriceOrTotal);
+  //     setSelectedPackage(null);
+  //   } else {
+  //     if (selectedPackage) {
+  //       const prevPackagePrice = selectedPackage.price;
+  //       const currentPackagePrice = plan.price;
+  //       const theNewComputedTotal = computedTotal - prevPackagePrice;
+  //       const newPriceOrTotal = theNewComputedTotal + currentPackagePrice;
+  //       console.log("Price in  2nd ELSE IF", newPriceOrTotal);
+
+  //       setComputedTotal(newPriceOrTotal);
+  //       setSelectedPackage(plan);
+  //     } else {
+  //       const currentPackagePrice = plan.price;
+  //       const theNewComputedTotal = currentPackagePrice;
+  //       const newPriceOrTotal = theNewComputedTotal + computedTotal;
+  //       console.log("Price in  1st Else Else", newPriceOrTotal);
+
+  //       // Add the price of the newly selected package
+  //       setComputedTotal(newPriceOrTotal);
+  //       setSelectedPackage(plan);
+  //     }
+  //   }
+  // };
   const handleSelect = () => {
-    setSelectedPackage(plan);
-
-    // Update the computed total
-    if (plan.price > 0) {
-      setComputedTotal((computedTotal + plan.price) - 400000 );
+    console.log("Selected Package", selectedPackage?.price);
+    console.log("Current Plan", plan.price);
+  
+    if (selectedPackage?.name === plan.name) {
+      // Removing the selected package
+      const prevPackagePrice = selectedPackage.price;
+      const newPriceOrTotal = computedTotal - prevPackagePrice;
+      console.log("Price in 1st IF", newPriceOrTotal);
+  
+      setComputedTotal(newPriceOrTotal);
+      setSelectedPackage(null);
+    } else {
+      // Adding or changing the selected package
+      if (selectedPackage) {
+        // Remove the previous package price and add the new one
+        const prevPackagePrice = selectedPackage.price;
+        const newPriceOrTotal = computedTotal - prevPackagePrice + plan.price;
+        console.log("Price in 2nd ELSE IF", newPriceOrTotal);
+  
+        setComputedTotal(newPriceOrTotal);
+      } else {
+        // Adding the new package price
+        const newPriceOrTotal = computedTotal + plan.price;
+        console.log("Price in 1st Else Else", newPriceOrTotal);
+  
+        setComputedTotal(newPriceOrTotal);
+      }
+      setSelectedPackage(plan);
     }
   };
-
+  
   return (
     <div className="dark:bg-gray-900 max-w-72 mx-auto border rounded-lg dark:border-gray-700">
       <div className="p-6">
@@ -44,9 +108,11 @@ const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
 
         <button
           onClick={handleSelect}
-          className={`w-full px-4 py-2 mt-6 tracking-wide text-white capitalize transition-colors duration-300 transform ${
-            selectedPackage?.name === plan.name ? "bg-green-600" : "bg-blue-600 hover:bg-blue-500"
-          } rounded-md focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80`}
+          className={`w-full px-4 py-2 mt-6 tracking-wide capitalize transition-colors duration-300 transform ${
+            selectedPackage?.name === plan.name
+              ? "focus:ring focus:ring-amber-200 focus:ring-opacity-80 bg-yellow text-gray-800 focus:text-gray-800"
+              : "bg-orange hover:bg-yellow hover:text-gray-800"
+          } rounded-md focus:outline-none text-gray-200 `}
         >
           {selectedPackage?.name === plan.name ? "Selected" : "Select"}
         </button>
@@ -62,7 +128,7 @@ const PricingCard: React.FC<{ plan: Plan }> = ({ plan }) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`w-5 h-5 ${
-                  feature.included ? "text-blue-500" : "text-red-400"
+                  feature.included ? "text-orange" : "text-red-400"
                 }`}
                 viewBox="0 0 20 20"
                 fill="currentColor"

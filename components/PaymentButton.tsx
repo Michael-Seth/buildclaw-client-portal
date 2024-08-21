@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import useMyContext from "@/constants/context/useMyContext";
 import {
   NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
@@ -19,6 +19,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   disabled,
   amount,
   text,
+  onPaymentSuccess,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const {
@@ -28,6 +29,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     recipient,
     clientName,
     pendingBalance,
+     setToastMessage,
+    setPendingBalance,
   } = useMyContext();
 
   const paymentConfig = useCallback(
@@ -35,6 +38,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
       email: NEXT_PUBLIC_SMTP_USER,
       amount: amount,
+      channels: ["card"],
       publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
     }),
     [amount]
@@ -64,15 +68,16 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       });
 
       if (response.ok) {
-        console.log("Email sent successfully.");
+        setToastMessage("Payment successful. An email has been sent to you.")
       } else {
         console.error("Failed to send email.");
       }
+      setPendingBalance(0);
+      setIsModalOpen(true); // Open the modal when payment is successful
+      onPaymentSuccess();
     } catch (error) {
       console.error("Error sending email:", error);
     }
-
-    setIsModalOpen(true); // Open the modal when payment is successful
   };
 
   const handlePaystackCloseAction = () => {

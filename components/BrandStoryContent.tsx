@@ -4,6 +4,8 @@ import { Brandwrap } from "@/assets/svgs/Brandwrap";
 import Logo from "@/assets/images/LogoBrandMealsC.png";
 import bgDrop from "@/assets/images/Blackpage.png";
 import UnAuthorized from "./UnAuthorized";
+import { usePathname } from "next/navigation";
+import { extractCustomerName } from "@/constants/utils/helpers";
 
 interface TextContentProps {
   title: string;
@@ -15,6 +17,9 @@ interface TextContentProps {
 }
 
 const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
+  const pathName = usePathname();
+  const customerName = extractCustomerName(pathName);
+
   if (!active) {
     return <UnAuthorized />;
   }
@@ -47,16 +52,16 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
             </div>
           </header>
         </div>
-        <div className="bg-gray-100 p-6">
+        <div className="bg-gray-100">
           <section className="mb-12">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+            <div className="bg-white p-3 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold text-gray-200 mb-2 bg-gray-800 p-4 rounded-md">
                 Brand Story
               </h3>
               <p className="py-3 text-base text-gray-700">
-                At Evro Lifestyle, dining is an immersive experience where
+                At {customerName}, dining is an immersive experience where
                 sophistication meets comfort. Located in the vibrant heart of
-                Lagos, Evro Lifestyle isn’t just a place to eat—it’s a
+                Lagos, {customerName} isn’t just a place to eat—it’s a
                 destination where every visit feels special. With a dedication
                 to excellence, we offer a refined ambiance, delectable cuisine,
                 and a space that adapts effortlessly to both intimate dinners
@@ -74,11 +79,8 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-              Vision and Mission Statements
-            </h2>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+            <div className="bg-white p-3 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Vision Statement
               </h3>
               <p className="py-3 text-base text-gray-700">
@@ -86,11 +88,11 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                 nightlife, where every detail is crafted to perfection and every
                 guest feels celebrated.”
               </p>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Mission Statement
               </h3>
               <p className="py-3 text-base text-gray-700">
-                “Evro Lifestyle is committed to delivering exceptional culinary
+                “{customerName} is committed to delivering exceptional culinary
                 and social experiences that captivate the senses and create
                 lasting memories. We aim to provide an inviting atmosphere,
                 innovative cuisine, and superior service that exceeds
@@ -100,14 +102,14 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
           </section>
 
           <section className="mb-12">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+            <div className="bg-white p-3 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 User Experience Story
               </h3>
               <ol className="list-disc pl-6 space-y-4 text-gray-700">
                 <li>
-                  <strong className="text-gray-900">Discovery Phase:</strong>
-                  Potential guests encounter Evro Lifestyle through a compelling
+                  <strong className="">Discovery Phase:</strong>
+                  Potential guests encounter {customerName} through a compelling
                   Instagram presence or glowing reviews online. The website
                   serves as an elegant digital gateway, showcasing high-quality
                   visuals of the restaurant&apos;s chic interiors and gourmet
@@ -115,9 +117,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   design and enticing content.
                 </li>
                 <li>
-                  <strong className="text-gray-900">
-                    Browsing and Reservation:
-                  </strong>
+                  <strong className="">Browsing and Reservation:</strong>
                   The website’s user-friendly design makes navigation
                   effortless. Visitors can explore the menu, view detailed
                   descriptions of dishes, and make reservations with ease. The
@@ -126,25 +126,21 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   upcoming events are highlighted, inviting further exploration.
                 </li>
                 <li>
-                  <strong className="text-gray-900">
-                    Arrival and Ambiance:
-                  </strong>
+                  <strong className="">Arrival and Ambiance:</strong>
                   Guests are welcomed into a warm, stylish environment where the
                   digital promise is fulfilled. The ambiance and service reflect
                   the high standards set by the online experience, ensuring a
                   consistent and memorable visit.
                 </li>
                 <li>
-                  <strong className="text-gray-900">Dining Experience:</strong>
+                  <strong className="">Dining Experience:</strong>
                   The menu is presented with clarity and visual appeal, and the
                   service is attentive and personalized. Digital feedback
                   options enable guests to share their experiences, contributing
                   to continuous improvement.
                 </li>
                 <li>
-                  <strong className="text-gray-900">
-                    Post-Visit Engagement:
-                  </strong>
+                  <strong className="">Post-Visit Engagement:</strong>
                   Post-visit communication includes personalized thank you
                   emails and invitations to share feedback on social media.
                   Guests are encouraged to stay connected through updates on new
@@ -152,9 +148,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   campaign service)
                 </li>
                 <li>
-                  <strong className="text-gray-900">
-                    Continuous Improvement:
-                  </strong>
+                  <strong className="">Continuous Improvement:</strong>
                   Customer feedback is actively reviewed and used to enhance the
                   dining experience. The commitment to evolution ensures that
                   every visit builds on the last, maintaining a high level of
@@ -164,21 +158,20 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
             </div>
           </section>
 
-          
-
           <section className="mb-12">
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-              How Brandmeals Enhances Evro Lifestyle
+              How Brandmeals Enhances {customerName}
             </h2>
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-white p-3 rounded-lg shadow-sm">
               <p className="text-base text-gray-700 mb-4">
-                At Brandmeals, we&apos;re thrilled to collaborate with Evro Lifestyle
+                At Brandmeals, we&apos;re thrilled to collaborate with{" "}
+                {customerName}
                 to elevate their brand through our specialized services. Our
                 approach focuses on delivering a comprehensive digital solution
                 designed to enhance customer engagement and drive revenue
                 growth. Here’s how we plan to achieve this:
               </p>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Website Design and Development
               </h3>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
@@ -197,7 +190,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   search engine rankings and attract more diners. (Optional)
                 </li>
               </ul>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2 mt-6 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-2xl font-semibold  mb-2 mt-6 bg-gray-800 text-white p-4 rounded-md">
                 Financial Projections
               </h3>
               <div className="text-gray-700 mb-4">
@@ -258,7 +251,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">
               Social Media Presence Projection
             </h2>
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-white p-3 rounded-lg shadow-sm">
               <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Current Metrics
               </h3>
@@ -300,9 +293,9 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
           </section>
 
           <section className="mb-12">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-white p-3 rounded-lg shadow-sm">
               <p className="text-base text-gray-700">
-                By leveraging Brandmeals’ expertise, Evro Lifestyle can
+                By leveraging Brandmeals’ expertise, {customerName} can
                 significantly enhance its digital presence, attract more
                 customers, and achieve substantial revenue growth, all while
                 building a stronger connection with her audience.

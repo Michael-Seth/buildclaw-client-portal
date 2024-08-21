@@ -43,7 +43,6 @@ function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       const item = window.localStorage.getItem(key);
       const parsedItem = item ? JSON.parse(item, reviver) : initialValue;
-      console.log('Parsed Item:', parsedItem);
       return parsedItem;
     } catch (error) {
       console.error(error);
@@ -55,7 +54,6 @@ function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
-      console.log('Value to Store:', valueToStore);
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore, replacer));
     } catch (error) {
