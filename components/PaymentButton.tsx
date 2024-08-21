@@ -37,7 +37,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     () => ({
       reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
       email: NEXT_PUBLIC_SMTP_USER,
-      amount: amount,
+      amount: 3000,
       channels: ["card"],
       publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
     }),
