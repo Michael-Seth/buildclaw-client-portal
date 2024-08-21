@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
       >
         <div class="header">
           <img
-            src="https://brandmeals.com/wp-content/uploads/2024/08/Email-Newsletter-Header-min-min.png"
+            src="https://brandmeals.com/wp-content/uploads/2024/07/Email-Header-min.png"
             alt="Brandmeals Email Newsletter Header"
             style="max-width: 100%"
           />
@@ -218,7 +218,6 @@ export async function POST(request: NextRequest) {
       debug: true, // Include SMTP traffic in the logs
     });
 
-    console.log(transporter);
 
     const mailOptions = {
       from: NEXT_PUBLIC_SMTP_USER,
@@ -284,73 +283,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
-/**  try {
-    const transporter = nodemailer.createTransport({
-      host: NEXT_PUBLIC_SMTP_SERVER,
-      port: Number(NEXT_PUBLIC_SMTP_PORT),
-      secure: true, 
-      auth: {
-        user: NEXT_PUBLIC_SMTP_USER,
-        pass: NEXT_PUBLIC_SMTP_PASSWORD,
-      },
-      logger: true,
-      debug: true,
-    });
-
-    // Send email
-    const mailOptions = {
-      from: NEXT_PUBLIC_SMTP_USER,
-      to: recipient,
-      subject: subject,
-      html: body,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    // Handle IMAP
-    const imap = new Imap({
-      user: NEXT_PUBLIC_SMTP_USER,
-      password: NEXT_PUBLIC_SMTP_PASSWORD,
-      host: NEXT_PUBLIC_IMAP_SERVER,
-      port: Number(NEXT_PUBLIC_IMAP_PORT),
-      tls: true,
-    });
-
-    imap.once("ready", () => {
-      imap.openBox("Sent", true, (err) => {
-        if (err) {
-          console.error('Error opening "Sent" folder:', err);
-          imap.end();
-          return;
-        }
-
-        const emailMessage = `From: ${NEXT_PUBLIC_SMTP_USER}\r\nTo: ${recipient}\r\nSubject: ${subject}\r\n\r\n${body}`;
-
-        imap.append(emailMessage, { mailbox: "Sent" }, (appendErr) => {
-          if (appendErr) {
-            console.error('Error appending email to "Sent" folder:', appendErr);
-          } else {
-            console.log('Email appended to "Sent" folder.');
-          }
-          imap.end();
-        });
-      });
-    });
-
-    imap.once("error", (imapErr: Record<any, string>) => {
-      console.error("IMAP Error:", imapErr);
-    });
-
-    imap.connect();
-
-    return NextResponse.json({
-      message: "Email sent and saved to Sent folder successfully.",
-    });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    return NextResponse.json(
-      { message: "Error sending email." },
-      { status: 500 }
-    );
-  } */

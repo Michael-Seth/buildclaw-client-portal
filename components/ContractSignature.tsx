@@ -62,15 +62,19 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
       },
     }));
 
-    const clearSignature = () => sigCanvas.current?.clear();
-
+    // const clearSignature = () => sigCanvas.current?.clear();
+    const clearForm = () => {
+      setFullName("");
+      setEmail("");
+      setAgreementChecked(false);
+      sigCanvas.current?.clear();
+    };
     const saveSignature = () => {
       const signature = sigCanvas.current
         ?.getTrimmedCanvas()
         .toDataURL("image/png");
       if (signature) {
         setSignature(signature);
-        console.log("Signature saved:", signature);
       }
     };
 
@@ -149,7 +153,7 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
         <div className="flex justify-between mt-4">
           <button
             type="button"
-            onClick={clearSignature}
+            onClick={clearForm}
             className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide transition-colors duration-200 bg-red-500 hover:bg-red-600 text-white rounded-lg shrink-0 sm:w-auto gap-x-2"
           >
             Clear

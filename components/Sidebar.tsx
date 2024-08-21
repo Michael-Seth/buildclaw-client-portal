@@ -65,7 +65,7 @@ const sidebarLinks = [
     ),
   },
   {
-    href:  `/contract`,
+    href: `/contract`,
     text: "Contract",
     icon: (
       <svg
@@ -152,26 +152,26 @@ export default function Sidebar({
   return (
     <>
       <aside
-        className={`fixed inset-y-0 left-0 z-30 w-64 bg-white border-r dark:bg-gray-900 dark:border-gray-700 transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-30 w-64 bg-white border-r dark:bg-gray-900 dark:border-dark_red transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:w-64`}
       >
         <div className="flex flex-col items-center mt-6 -mx-2">
-          <div>
+          <div className="bg-gray-700 rounded-full p-3">
             <Image
-              className="object-cover bg-gray-900 w-24 h-24 mx-2 rounded-full"
-              src={customerData?.logo} // Use customerData? for logo
+              className="object-cover w-20 mx-2"
+              src={customerData?.logo}
               alt="avatar"
               width={90}
               height={90}
             />
-            <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
-              {customerData?.name} {/* Use customerData? for name */}
-            </h4>
-            <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-              {customerData?.email} {/* Use customerData for email */}
-            </p>
           </div>
+          <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-100">
+            {customerData?.name} {/* Use customerData? for name */}
+          </h4>
+          <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-200">
+            {customerData?.email} {/* Use customerData for email */}
+          </p>
         </div>
         <div className="flex flex-col justify-between flex-1 mt-6">
           <nav>
@@ -180,12 +180,11 @@ export default function Sidebar({
                 key={link.href}
                 href={`/${customerName}${link.href}`}
                 className={`flex items-center px-4 py-2 mt-5 rounded-lg transition-colors duration-300 transform ${
-                  pathname === link.href
-                    ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
-                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  pathname === `/${customerName}${link.href}`
+                    ? "text-gray-200 bg-orange"
+                    : "text-gray-200 hover:bg-orange hover:text-gray-200"
                 }`}
-                onClick={() => setSidebarOpen(false)} 
-                
+                onClick={() => setSidebarOpen(false)}
               >
                 {link.icon}
                 <span className="mx-4 font-medium">{link.text}</span>

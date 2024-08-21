@@ -25,14 +25,14 @@ export default function DefaultLayout({ children, customerData }: DefaultLayoutP
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} customerData={customerData!}
         />
         <main className="flex-1 flex flex-col overflow-y-auto">
-          {pathname === "/dashboard/contract" && (
+          {pathname === "/contract" && (
             <Announcement
               backgroundColor="bg-indigo-600"
               text="NB:"
               message="Download A Copy of Your Contract After Successful Payment"
             />
           )}
-          <div className="mx-auto max-w-screen-2xl w-full p-4 md:p-6 2xl:p-10">
+          <div className="mx-auto max-w-screen-2xl w-full px-2 sm:px-6">
             {children}
           </div>
           <Footer />

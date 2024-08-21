@@ -4,7 +4,7 @@ import { Plan } from "@/components/PricingCard";
 export const plans: Plan[] = [
   {
     name: "Economy",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    description: "Ideal for starting your digital presence and automating orders with essential features.",
     price: 600000,
     features: [
       { name: "Professional Website Design and Development", included: true },
