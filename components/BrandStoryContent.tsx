@@ -17,12 +17,12 @@ interface TextContentProps {
 }
 
 const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
-  if (!active) {
-    return <UnAuthorized />;
-  }
   const pathName = usePathname();
   const customerName = extractCustomerName(pathName);
 
+  if (!active) {
+    return <UnAuthorized />;
+  }
 
   return (
     <section className="bg-gray-50 lg:rounded-xl">
@@ -79,7 +79,6 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
           </section>
 
           <section className="mb-12">
-            
             <div className="bg-white p-3 rounded-lg shadow-sm">
               <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Vision Statement
@@ -118,9 +117,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   design and enticing content.
                 </li>
                 <li>
-                  <strong className="">
-                    Browsing and Reservation:
-                  </strong>
+                  <strong className="">Browsing and Reservation:</strong>
                   The website’s user-friendly design makes navigation
                   effortless. Visitors can explore the menu, view detailed
                   descriptions of dishes, and make reservations with ease. The
@@ -129,9 +126,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   upcoming events are highlighted, inviting further exploration.
                 </li>
                 <li>
-                  <strong className="">
-                    Arrival and Ambiance:
-                  </strong>
+                  <strong className="">Arrival and Ambiance:</strong>
                   Guests are welcomed into a warm, stylish environment where the
                   digital promise is fulfilled. The ambiance and service reflect
                   the high standards set by the online experience, ensuring a
@@ -145,9 +140,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   to continuous improvement.
                 </li>
                 <li>
-                  <strong className="">
-                    Post-Visit Engagement:
-                  </strong>
+                  <strong className="">Post-Visit Engagement:</strong>
                   Post-visit communication includes personalized thank you
                   emails and invitations to share feedback on social media.
                   Guests are encouraged to stay connected through updates on new
@@ -155,9 +148,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   campaign service)
                 </li>
                 <li>
-                  <strong className="">
-                    Continuous Improvement:
-                  </strong>
+                  <strong className="">Continuous Improvement:</strong>
                   Customer feedback is actively reviewed and used to enhance the
                   dining experience. The commitment to evolution ensures that
                   every visit builds on the last, maintaining a high level of
@@ -167,15 +158,14 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
             </div>
           </section>
 
-          
-
           <section className="mb-12">
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">
               How Brandmeals Enhances {customerName}
             </h2>
             <div className="bg-white p-3 rounded-lg shadow-sm">
               <p className="text-base text-gray-700 mb-4">
-                At Brandmeals, we&apos;re thrilled to collaborate with {customerName}
+                At Brandmeals, we&apos;re thrilled to collaborate with{" "}
+                {customerName}
                 to elevate their brand through our specialized services. Our
                 approach focuses on delivering a comprehensive digital solution
                 designed to enhance customer engagement and drive revenue
@@ -305,7 +295,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
           <section className="mb-12">
             <div className="bg-white p-3 rounded-lg shadow-sm">
               <p className="text-base text-gray-700">
-                By leveraging Brandmeals’ expertise,  {customerName} can
+                By leveraging Brandmeals’ expertise, {customerName} can
                 significantly enhance its digital presence, attract more
                 customers, and achieve substantial revenue growth, all while
                 building a stronger connection with her audience.
