@@ -29,7 +29,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     recipient,
     clientName,
     pendingBalance,
-     setToastMessage,
+    showToast,
     setPendingBalance,
   } = useMyContext();
 
@@ -68,7 +68,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       });
 
       if (response.ok) {
-        setToastMessage("Payment successful. An email has been sent to you.")
+        showToast("Payment successful. An email has been sent to you.")
       } else {
         console.error("Failed to send email.");
       }

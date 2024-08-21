@@ -29,7 +29,7 @@ const TotalAndProceed = dynamic(
 
 const Contract: React.FC = () => {
   const formRef = useRef<ContractSignHandles>(null);
-  const { state, selectedPackage, computedTotal, setState, setPendingBalance } = useMyContext();
+  const { state, selectedPackage, computedTotal, setState, showToast, setPendingBalance } = useMyContext();
   const selectedItems = Array.from(state.values());
 
   const total = computedTotal;
@@ -80,6 +80,7 @@ const Contract: React.FC = () => {
           return updated;
         });
       }
+      showToast("Items processed. Please scroll up")
     }
 
     setPendingBalance(payStackHalfTotal);

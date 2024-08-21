@@ -1,7 +1,12 @@
 import SecureIcon from "@/assets/svgs/SecureIcon";
+import { extractCustomerUrl } from "@/constants/utils/helpers";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const UnAuthorized = () => {
+  const pathName = usePathname();
+  const customerUrl = extractCustomerUrl(pathName);
+
   return (
     <div className="grid h-screen place-content-center bg-white px-4">
       <div className="text-center">
@@ -15,7 +20,7 @@ const UnAuthorized = () => {
         </p>
         <Link
           className="group my-6 relative inline-flex items-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500"
-          href="/dashboard/contract"
+          href={`/${customerUrl}contract`}
         >
           <span className="absolute -end-full transition-all group-hover:end-4">
             <svg

@@ -61,7 +61,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
               <p className="py-3 text-base text-gray-700">
                 At {customerName}, dining is an immersive experience where
                 sophistication meets comfort. Located in the vibrant heart of
-                Lagos, {customerName} isn’t just a place to eat—it’s a
+                Abuja, {customerName} isn’t just a place to eat—it’s a
                 destination where every visit feels special. With a dedication
                 to excellence, we offer a refined ambiance, delectable cuisine,
                 and a space that adapts effortlessly to both intimate dinners
@@ -108,7 +108,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
               </h3>
               <ol className="list-disc pl-6 space-y-4 text-gray-700">
                 <li>
-                  <strong className="">Discovery Phase:</strong>
+                  <strong className="mr-2">Discovery Phase: </strong>
                   Potential guests encounter {customerName} through a compelling
                   Instagram presence or glowing reviews online. The website
                   serves as an elegant digital gateway, showcasing high-quality
@@ -117,7 +117,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   design and enticing content.
                 </li>
                 <li>
-                  <strong className="">Browsing and Reservation:</strong>
+                  <strong className="mr-2">Browsing and Reservation:</strong>
                   The website’s user-friendly design makes navigation
                   effortless. Visitors can explore the menu, view detailed
                   descriptions of dishes, and make reservations with ease. The
@@ -126,21 +126,21 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   upcoming events are highlighted, inviting further exploration.
                 </li>
                 <li>
-                  <strong className="">Arrival and Ambiance:</strong>
+                  <strong className="mr-2">Arrival and Ambiance:</strong>
                   Guests are welcomed into a warm, stylish environment where the
                   digital promise is fulfilled. The ambiance and service reflect
                   the high standards set by the online experience, ensuring a
                   consistent and memorable visit.
                 </li>
                 <li>
-                  <strong className="">Dining Experience:</strong>
+                  <strong className="mr-2">Dining Experience:</strong>
                   The menu is presented with clarity and visual appeal, and the
                   service is attentive and personalized. Digital feedback
                   options enable guests to share their experiences, contributing
                   to continuous improvement.
                 </li>
                 <li>
-                  <strong className="">Post-Visit Engagement:</strong>
+                  <strong className="mr-2">Post-Visit Engagement:</strong>
                   Post-visit communication includes personalized thank you
                   emails and invitations to share feedback on social media.
                   Guests are encouraged to stay connected through updates on new
@@ -148,7 +148,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   campaign service)
                 </li>
                 <li>
-                  <strong className="">Continuous Improvement:</strong>
+                  <strong className="mr-2">Continuous Improvement:</strong>
                   Customer feedback is actively reviewed and used to enhance the
                   dining experience. The commitment to evolution ensures that
                   every visit builds on the last, maintaining a high level of
@@ -164,7 +164,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
             </h2>
             <div className="bg-white p-3 rounded-lg shadow-sm">
               <p className="text-base text-gray-700 mb-4">
-                At Brandmeals, we&apos;re thrilled to collaborate with{" "}
+                At Brandmeals, we&apos;re thrilled to collaborate with
                 {customerName}
                 to elevate their brand through our specialized services. Our
                 approach focuses on delivering a comprehensive digital solution
