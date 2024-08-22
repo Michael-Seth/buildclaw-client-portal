@@ -18,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MyContextProvider data={contractData}>
-        <body className={inter.className}>{children}</body>
-      </MyContextProvider>
+      <body className={inter.className}>
+        <MyContextProvider data={contractData}>{children}</MyContextProvider>
+      </body>
     </html>
   );
 }

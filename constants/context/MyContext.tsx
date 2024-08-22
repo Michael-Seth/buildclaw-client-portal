@@ -1,9 +1,14 @@
 "use client";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
+import dynamic from "next/dynamic";
 import { ContractData } from "@/components/ContractTable";
 import { Plan } from "@/components/PricingCard";
-import SuccessToast from "@/components/Toast";
+// import SuccessToast from "@/components/Toast";
+const SuccessToast = dynamic(
+  () => import("../../components/Toast"),
+  { ssr: false }
+);
 
 export interface Item {
   id: string;
@@ -12,13 +17,26 @@ export interface Item {
   status: string;
 }
 
-// useEffect(() => {
-//   const total = data.reduce((sum, item) => {
-//     const price = item.price > 0 && state.has(item.id) ? item.price : 0;
-//     return sum + price;
-//   }, 0);
-//   setComputedTotal(total);
-// }, [state, data]);
+export interface ICustomerData {
+  name: string;
+  email: string;
+  logo: string;
+  businessName: string;
+  brandStoryA: string;
+  brandStoryB: string;
+  visionStatement: string;
+  missionStatement: string;
+  uxStoryDiscoveryPhase: string;
+  uxStoryBrowsingAndReservation: string;
+  uxStoryArrivalAndAmbiance: string;
+  uxStoryDiningExperience: string;
+  uxStoryPostVisitEngagement: string;
+  uxStoryContinuousImprovement: string;
+  currentInstagramFollowers: number;
+  currentEngagementRate: number;
+  projectedInstagramFollowers: number;
+  projectedEngagementRate: number;
+}
 
 interface MyContextProps {
   state: Map<string, Item>;
@@ -40,6 +58,7 @@ interface MyContextProps {
   pendingBalance: number;
   setPendingBalance: React.Dispatch<React.SetStateAction<number>>;
   showToast: (message: string) => void;
+  customerData?: ICustomerData;
 }
 
 const MyContext = createContext<MyContextProps | undefined>(undefined);
@@ -47,13 +66,13 @@ const MyContext = createContext<MyContextProps | undefined>(undefined);
 export const MyContextProvider: React.FC<{
   children: ReactNode;
   data: ContractData[];
-}> = ({ children, data }) => {
+  customerData?: ICustomerData; 
+}> = ({ children, data, customerData }) => {
   const [state, setState] = useLocalStorage<Map<string, Item>>(
     "addedServices",
     new Map()
   );
   const [computedTotal, setComputedTotal] = useLocalStorage<number>("total", 0);
-
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [recipient, setRecipient] = useState<string>("");
   const [clientName, setClientName] = useState<string>("");
@@ -67,7 +86,6 @@ export const MyContextProvider: React.FC<{
   const [pendingBalance, setPendingBalance] = useState<number>(0);
 
   useEffect(() => {
-    // Calculate total based on the state and data
     const baseTotal = data.reduce((sum, item) => {
       const price = item.price > 0 && state.has(item.id) ? item.price : 0;
       return sum + price;
@@ -109,6 +127,7 @@ export const MyContextProvider: React.FC<{
         showToast,
         pendingBalance,
         setPendingBalance,
+        customerData
       }}
     >
       {toastMessage && <SuccessToast message={toastMessage} />}

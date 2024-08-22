@@ -33,22 +33,21 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     setPendingBalance,
   } = useMyContext();
 
-  const paymentConfig = useCallback(
-    () => ({
-      reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
-      email: NEXT_PUBLIC_SMTP_USER,
-      amount: 3000,
-      channels: ["card"],
-      publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
-    }),
-    [amount]
-  );
+
+  const paymentConfig = {
+    reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
+    email: recipient,
+    firstname: clientName,
+    amount: amount,
+    channels: ["card"],
+    publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+  };
+
+  const selectedItems = Array.from(state.values());
 
   const handlePaystackSuccessAction = async (
     reference: Record<any, string>
   ) => {
-    const selectedItems = Array.from(state.values());
-
     try {
       const response = await fetch("/api/email", {
         method: "POST",
@@ -68,7 +67,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       });
 
       if (response.ok) {
-        showToast("Payment successful. An email has been sent to you.")
+        showToast("Payment successful. An email has been sent to you.");
       } else {
         console.error("Failed to send email.");
       }
@@ -89,7 +88,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   };
 
   const paymentProps = {
-    ...paymentConfig(),
+    ...paymentConfig,
     text,
     onSuccess: (reference: Record<any, string>) =>
       handlePaystackSuccessAction(reference),

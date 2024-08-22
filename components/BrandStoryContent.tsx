@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { Brandwrap } from "@/assets/svgs/Brandwrap";
@@ -6,6 +7,7 @@ import bgDrop from "@/assets/images/Blackpage.png";
 import UnAuthorized from "./UnAuthorized";
 import { usePathname } from "next/navigation";
 import { extractCustomerName } from "@/constants/utils/helpers";
+import useMyContext from "@/constants/context/useMyContext";
 
 interface TextContentProps {
   title: string;
@@ -19,6 +21,7 @@ interface TextContentProps {
 const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
   const pathName = usePathname();
   const customerName = extractCustomerName(pathName);
+  const {customerData} = useMyContext();
 
   if (!active) {
     return <UnAuthorized />;
@@ -27,7 +30,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
   return (
     <section className="bg-gray-50 lg:rounded-xl">
       <div className="container px-2 pt-6 pb-16 mx-auto">
-        <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl ml-3">
+        <h1 className="text-lg md:text-2xl font-medium md:font-semibold text-gray-800 capitalize lg:text-3xl ml-3">
           {title}
         </h1>
         <div className="mt-8 mb-14 mx-3">
@@ -55,104 +58,68 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
         <div className="bg-gray-100">
           <section className="mb-12">
             <div className="bg-white p-3 rounded-lg shadow-sm">
-              <h3 className="text-2xl font-semibold text-gray-200 mb-2 bg-gray-800 p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold text-gray-200 mb-2 bg-gray-800 p-4 rounded-md">
                 Brand Story
               </h3>
               <p className="py-3 text-base text-gray-700">
-                At {customerName}, dining is an immersive experience where
-                sophistication meets comfort. Located in the vibrant heart of
-                Abuja, {customerName} isn’t just a place to eat—it’s a
-                destination where every visit feels special. With a dedication
-                to excellence, we offer a refined ambiance, delectable cuisine,
-                and a space that adapts effortlessly to both intimate dinners
-                and lively gatherings.
+                {customerData?.brandStoryA}
               </p>
               <p className="py-3 text-base text-gray-700">
-                Our story begins with a commitment to craft. Every dish on our
-                menu is a testament to the art of fine dining, meticulously
-                prepared with fresh ingredients to delight the palate. The
-                lounge, designed with a blend of modern elegance and classic
-                charm, provides the perfect backdrop for unwinding and
-                socializing.
+              {customerData?.brandStoryB}
+
               </p>
             </div>
           </section>
 
           <section className="mb-12">
             <div className="bg-white p-3 rounded-lg shadow-sm">
-              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Vision Statement
               </h3>
               <p className="py-3 text-base text-gray-700">
-                “To be the premier destination for luxurious dining and vibrant
-                nightlife, where every detail is crafted to perfection and every
-                guest feels celebrated.”
+              {customerData?.visionStatement}
+
               </p>
-              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Mission Statement
               </h3>
               <p className="py-3 text-base text-gray-700">
-                “{customerName} is committed to delivering exceptional culinary
-                and social experiences that captivate the senses and create
-                lasting memories. We aim to provide an inviting atmosphere,
-                innovative cuisine, and superior service that exceeds
-                expectations.”
+              {customerData?.missionStatement}
+
               </p>
             </div>
           </section>
 
           <section className="mb-12">
             <div className="bg-white p-3 rounded-lg shadow-sm">
-              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 User Experience Story
               </h3>
               <ol className="list-disc pl-6 space-y-4 text-gray-700">
                 <li>
                   <strong className="mr-2">Discovery Phase: </strong>
-                  Potential guests encounter {customerName} through a compelling
-                  Instagram presence or glowing reviews online. The website
-                  serves as an elegant digital gateway, showcasing high-quality
-                  visuals of the restaurant&apos;s chic interiors and gourmet
-                  offerings. Users are immediately engaged by the sophisticated
-                  design and enticing content.
+                  {customerData?.uxStoryDiscoveryPhase}
+
                 </li>
                 <li>
-                  <strong className="mr-2">Browsing and Reservation:</strong>
-                  The website’s user-friendly design makes navigation
-                  effortless. Visitors can explore the menu, view detailed
-                  descriptions of dishes, and make reservations with ease. The
-                  integrated booking system is intuitive, allowing users to
-                  select dates and times seamlessly. Special promotions and
-                  upcoming events are highlighted, inviting further exploration.
+                  <strong className="mr-2">Browsing and Reservation:</strong>                {customerData?.uxStoryBrowsingAndReservation}
+
                 </li>
                 <li>
                   <strong className="mr-2">Arrival and Ambiance:</strong>
-                  Guests are welcomed into a warm, stylish environment where the
-                  digital promise is fulfilled. The ambiance and service reflect
-                  the high standards set by the online experience, ensuring a
-                  consistent and memorable visit.
+                  {customerData?.uxStoryArrivalAndAmbiance}
                 </li>
                 <li>
                   <strong className="mr-2">Dining Experience:</strong>
-                  The menu is presented with clarity and visual appeal, and the
-                  service is attentive and personalized. Digital feedback
-                  options enable guests to share their experiences, contributing
-                  to continuous improvement.
+                  {customerData?.uxStoryDiningExperience}
                 </li>
                 <li>
                   <strong className="mr-2">Post-Visit Engagement:</strong>
-                  Post-visit communication includes personalized thank you
-                  emails and invitations to share feedback on social media.
-                  Guests are encouraged to stay connected through updates on new
-                  offerings, events, and exclusive promotions. (Email marketing
-                  campaign service)
+                  {customerData?.uxStoryPostVisitEngagement}
                 </li>
                 <li>
                   <strong className="mr-2">Continuous Improvement:</strong>
-                  Customer feedback is actively reviewed and used to enhance the
-                  dining experience. The commitment to evolution ensures that
-                  every visit builds on the last, maintaining a high level of
-                  satisfaction and engagement.
+                  {customerData?.uxStoryContinuousImprovement}
                 </li>
               </ol>
             </div>
@@ -171,7 +138,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                 designed to enhance customer engagement and drive revenue
                 growth. Here’s how we plan to achieve this:
               </p>
-              <h3 className="text-2xl font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold  mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Website Design and Development
               </h3>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
@@ -190,7 +157,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
                   search engine rankings and attract more diners. (Optional)
                 </li>
               </ul>
-              <h3 className="text-2xl font-semibold  mb-2 mt-6 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold  mb-2 mt-6 bg-gray-800 text-white p-4 rounded-md">
                 Financial Projections
               </h3>
               <div className="text-gray-700 mb-4">
@@ -252,42 +219,42 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
               Social Media Presence Projection
             </h2>
             <div className="bg-white p-3 rounded-lg shadow-sm">
-              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold mb-2 bg-gray-800 text-white p-4 rounded-md">
                 Current Metrics
               </h3>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                <li>Instagram Followers: 3,898</li>
-                <li>Average Engagement Rate: 3%</li>
+                <li>Instagram Followers: {customerData?.currentInstagramFollowers}</li>
+                <li>Average Engagement Rate: {customerData?.currentEngagementRate}%</li>
               </ul>
-              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
                 Projected Metrics with Brandmeals’ Services
               </h3>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                <li>Increased Followers: 5,000</li>
-                <li>Improved Engagement Rate: 5%</li>
+                <li>Increased Followers: {customerData?.projectedInstagramFollowers}</li>
+                <li>Improved Engagement Rate: {customerData?.projectedEngagementRate}%</li>
               </ul>
-              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
                 Engagement Increase
               </h3>
               <p className="text-base text-gray-700">
-                <strong>Current Average Engagement:</strong> 3,898 followers *
-                3% = 117 interactions per post
+                <strong>Current Average Engagement:</strong> 3,874 followers *
+                6.25% = 242 interactions per post
               </p>
               <p className="text-base text-gray-700">
-                <strong>Projected Engagement:</strong> 5,000 followers * 5% =
-                250 interactions per post
+                <strong>Projected Engagement:</strong> 8,000 followers * 12.9% =
+                1,032 interactions per post
               </p>
-              <h3 className="text-2xl font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
+              <h3 className="text-lg md:text-2xl font-medium md:font-semibold mb-2 bg-gray-800 text-white mt-6 p-4 rounded-md">
                 Potential Reach Increase
               </h3>
               <p className="text-base text-gray-700">
-                <strong>Current Average Reach:</strong> 3,898 followers
+                <strong>Current Average Reach:</strong> 5,811 followers
               </p>
               <p className="text-base text-gray-700">
                 <strong>
                   Projected Reach with Improved Engagement and Advanced SEO:
                 </strong>
-                10,000 followers
+                15,000 followers
               </p>
             </div>
           </section>
@@ -295,7 +262,7 @@ const BrandStoryContent: React.FC<TextContentProps> = ({ title, active }) => {
           <section className="mb-12">
             <div className="bg-white p-3 rounded-lg shadow-sm">
               <p className="text-base text-gray-700">
-                By leveraging Brandmeals’ expertise, {customerName} can
+                By leveraging Brandmeals’ expertise, {customerData?.businessName} can
                 significantly enhance its digital presence, attract more
                 customers, and achieve substantial revenue growth, all while
                 building a stronger connection with her audience.

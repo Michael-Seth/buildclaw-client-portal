@@ -81,7 +81,9 @@ export async function POST(request: NextRequest) {
         <div class="content" style="padding: 30px; text-align: left; color: #111015">
           <h2 style="color: #531507;">Thank You for Choosing Brandmeals!</h2>
 
-          <h1 style="color: #333333; font-size: large">Dear ${clientName},</h1>
+          <h1 style="color: #333333; font-size: large">Dear ${
+            clientName ? clientName : "Customer"
+          },</h1>
           <p style="font-size: 14px; line-height: 2">Thank you for choosing Brandmeals! We are delighted to confirm your purchase of our services. Below is a summary of the services you have selected, including their descriptions and prices:</p>
           <table style="width: 100%; border-radius: 10px; margin-top: 20px">
             <thead>
@@ -96,7 +98,7 @@ export async function POST(request: NextRequest) {
                     text-align: center;
                   "
                 >
-                  ${selectedPackage?.name}
+                  ${selectedPackage ? selectedPackage?.name : ""}
                 </th>
               </tr>
               <tr style="background-color: #691302; color: #ffffff">
@@ -110,7 +112,7 @@ export async function POST(request: NextRequest) {
                     text-align: center;
                   "
                 >
-                  ${formatPrice(selectedPackage?.price)}
+                  ${selectedPackage ? formatPrice(selectedPackage?.price) : ""}
                 </th>
               </tr>
             </thead>
@@ -142,7 +144,7 @@ export async function POST(request: NextRequest) {
                     text-align: center;
                   "
                 >
-                  ${formatPrice(total)}
+                  ${total ? formatPrice(total) : ""}
                 </th>
               </tr>
               <tr style="background-color: #691302; color: #ffffff">
@@ -156,7 +158,7 @@ export async function POST(request: NextRequest) {
                     text-align: center;
                   "
                 >
-                  ${status}
+                  ${status ? status : ""}
                 </th>
               </tr>
               <tr style="background-color: #691302; color: #ffffff">
@@ -170,7 +172,7 @@ export async function POST(request: NextRequest) {
                     text-align: center;
                   "
                 >
-                  ${formatPrice(pendingBalance)}
+                  ${pendingBalance ? formatPrice(pendingBalance) : ""}
                 </th>
               </tr>
             </thead>
@@ -217,7 +219,6 @@ export async function POST(request: NextRequest) {
       logger: true, // Log to console
       debug: true, // Include SMTP traffic in the logs
     });
-
 
     const mailOptions = {
       from: NEXT_PUBLIC_SMTP_USER,

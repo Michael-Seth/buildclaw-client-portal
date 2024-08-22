@@ -12,6 +12,9 @@ module.exports = {
         orange: "#F94912",
         yellow: "#FEDC2B",
       },
+      backgroundImage: {
+        "blackBg": "url('/public/Blackpage.png')",
+      }
     },
   },
   plugins: [],

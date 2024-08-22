@@ -60,19 +60,19 @@ const TextContent: React.FC<TextContentProps> = ({
           </header>
         </div>
         <div className="mt-6 lg:mt-0 lg:mx-6 p-3 rounded-lg shadow-sm">
-          <h3 className="block bg-gray-900 mt-4 py-3 text-2xl font-semibold text-white   rounded-md pl-4">
+          <h3 className="block bg-gray-900 mt-4 py-3 texl-lg md:text-2xl font-semibold text-white   rounded-md pl-4">
             Project Overview
           </h3>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             Brandmeals agrees to design and develop a website for the Evro
             lifestlye according to the specifications outlined in this contract.
           </p>
         </div>
         <div className="mt-6 lg:mt-0 lg:mx-6 p-3 rounded-lg shadow-sm">
-          <h3 className="font-semibold mb-2 py-3 mt-6 text-2xl bg-gray-900   text-white  rounded-md pl-4">
+          <h3 className="font-semibold mb-2 py-3 mt-6 text-lg md:text-2xl bg-gray-900   text-white  rounded-md pl-4">
             Scope of Work
           </h3>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Deliverables
           </p>
           <ul className="list-disc pl-5 space-y-2">
@@ -83,7 +83,7 @@ const TextContent: React.FC<TextContentProps> = ({
             </li>
             <li>Responsive design for desktop, tablet, and mobile devices.</li>
           </ul>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Timeline
           </p>
           <ul className="list-disc pl-5 space-y-2">
@@ -113,57 +113,57 @@ const TextContent: React.FC<TextContentProps> = ({
             <strong> Total Timeline:</strong> 9 weeks, plus 1 extra week for
             testing and deployment.
           </p>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Revisions
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             You are entitled to 3 rounds of revisions. Additional revisions
             might be billed depending on the complexity.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Our Packages
           </h3>
           <Pricing plans={plans} />
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Refund Policy
           </h3>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Initial Stage
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             If the Client requests a refund or cancels the Project at the
             beginning stage without any major work done, the Client is liable to
             a 95% refund of whatever has been paid.
           </p>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Post-Design Approval
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             If the Client decides to cancel or terminate the Project after the
             design has been submitted for approval, the Client is liable to a
             50% refund of whatever has been paid.
           </p>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Post-Development Phase
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             If the Project has reached Phase 2 (development phase) and has been
             submitted to the Client for review and testing, the Client must
             provide proof of breach of trust or agreement before requesting a
             refund. If the breach is valid, the Client can receive a 15% refund
             of whatever has been paid.
           </p>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Mediation
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             Both parties agree to attempt to resolve disputes through mediation
             before pursuing legal action.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Responsibilities
           </h3>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Your Responsibilities
           </p>
           <ul className="list-disc pl-5 space-y-2">
@@ -176,7 +176,7 @@ const TextContent: React.FC<TextContentProps> = ({
               schedule.
             </li>
           </ul>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Brandmeals Responsibilities
           </p>
           <ul className="list-disc pl-5 space-y-2">
@@ -189,7 +189,7 @@ const TextContent: React.FC<TextContentProps> = ({
               Provide training on the content management system if applicable..
             </li>
           </ul>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Standard Pages
           </h3>
           <ul className="list-disc pl-5 space-y-2">
@@ -222,51 +222,51 @@ const TextContent: React.FC<TextContentProps> = ({
             standard pages with another page of your choice without any
             additional cost.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Intellectual Property
           </h3>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Ownership
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             Upon full payment, the Client will own the final design, graphics,
             and website files. Brandmeals shall seek your consent to use the
             work for portfolio purposes.
           </p>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Licenses
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             Brandmeals will ensure all materials used in the Project are
             appropriately licensed or created.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Confidentiality
           </h3>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             Both parties agree to maintain the confidentiality of any
             proprietary information and materials.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Dispute Resolution
           </h3>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Mediation
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             In the event of a dispute, both parties agree to attempt to resolve
             it through mediation before pursuing legal action.
           </p>
-          <p className="flex items-center gap-3 text-xl mt-5 mb-3 font-medium text-gray-900">
+          <p className="flex items-center gap-3 text-base md:text-xl mt-5 mb-3 font-medium text-gray-900">
             <Grip size={16} /> Governing Law
           </p>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             This contract shall be governed by the laws of Nigeria.
           </p>
-          <h3 className="font-semibold mb-2 mt-6 text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
+          <h3 className="font-medium md:font-semibold mb-2 mt-6 text-lg md:text-2xl  bg-gray-900   text-white  rounded-md pl-4 py-3">
             Acceptance
           </h3>
-          <p className="py-3 text-base">
+          <p className="py-3 text-sm">
             This contract offers a comprehensive and professional overview of
             each service provided by BrandMeals, including pricing, to ensure
             you have a clear understanding of the value you&apos;re receiving. Please

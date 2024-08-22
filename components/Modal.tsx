@@ -15,7 +15,7 @@ export const SuccessModal = ({
   if (!isOpen) return null; // Don't render the modal if it's not open
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative flex justify-center">
         <div className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl rtl:text-right dark:bg-gray-900 sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
           <button
