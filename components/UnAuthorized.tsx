@@ -20,7 +20,7 @@ const UnAuthorized = () => {
         </p>
         <Link
           className="group my-6 relative inline-flex items-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500"
-          href={`/${customerUrl}contract`}
+          href={`/${customerUrl}/contract`}
         >
           <span className="absolute -end-full transition-all group-hover:end-4">
             <svg

@@ -34,7 +34,7 @@ const Contract: React.FC = () => {
 
   const total = computedTotal;
   const payStackTotal = computedTotal * 100;
-  const payStackHalfTotal = computedTotal / 2;
+  const payStackHalfTotal = (computedTotal / 2) * 100;
 
   const [isPaymentButtonEnabled, setIsPaymentButtonEnabled] = useState(false);
   const [downloadButton, setDownloadButton] = useState(false);

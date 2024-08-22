@@ -1,4 +1,6 @@
 import DefaultLayout from "@/components/DashboardLayout";
+import { MyContextProvider } from "@/constants/context/MyContext";
+import { contractData } from "@/constants/utils/data";
 import { fetchCustomers } from "@/lib/customers";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -7,7 +9,6 @@ export const metadata: Metadata = {
   title: "Dashboard",
   description: "Client portal",
 };
-
 
 export async function generateStaticParams() {
   const customers = await fetchCustomers();
@@ -23,7 +24,10 @@ type DashboardPageProps = {
   };
 };
 
-export default async function DashboardLayout({ children, params }: DashboardPageProps) {
+export default async function DashboardLayout({
+  children,
+  params,
+}: DashboardPageProps) {
   const { "customer-name": customerName } = params;
   const customers = await fetchCustomers();
   const customerData = customers.find((cust) => cust.name === customerName);
@@ -31,9 +35,12 @@ export default async function DashboardLayout({ children, params }: DashboardPag
   if (!customerData) {
     return notFound(); // Handle not found case
   }
+
   return (
-    <DefaultLayout customerData={customerData}>
-      <>{children}</>
-    </DefaultLayout>
+    <MyContextProvider data={contractData} customerData={customerData}>
+      <DefaultLayout customerData={customerData}>
+        <>{children}</>
+      </DefaultLayout>
+    </MyContextProvider>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import useMyContext from "@/constants/context/useMyContext";
+import { Check } from "lucide-react";
 import {
   forwardRef,
   useEffect,
@@ -154,18 +155,20 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
           <button
             type="button"
             onClick={clearForm}
-            className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide transition-colors duration-200 bg-red-500 hover:bg-red-600 text-white rounded-lg shrink-0 sm:w-auto gap-x-2"
+            className="py-4  px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200  bg-red-500 hover:bg-red-600
+             text-white"
           >
             Clear
           </button>
           <button
             type="submit"
             disabled={!isFormValid}
-            className={`flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide transition-colors duration-200 ${
-              isFormValid ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-300"
-            } text-white rounded-lg shrink-0 sm:w-auto gap-x-2`}
+            className={`py-4 flex justify-center gap-3 flex-grow flex-wrap flex-row px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200 ${
+              !isFormValid ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
+            } text-white`}
           >
-            Proceed
+            <span>SIGN</span>
+            <Check/>
           </button>
         </div>
       </form>
