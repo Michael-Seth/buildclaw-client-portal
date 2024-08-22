@@ -31,13 +31,16 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     pendingBalance,
     showToast,
     setPendingBalance,
+    customerData
   } = useMyContext();
 
+  const customerEmail = customerData?.email ? customerData.email : recipient
+  const customerName = customerData?.businessName ? customerData.businessName : clientName
 
   const paymentConfig = {
     reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
-    email: recipient,
-    firstname: clientName,
+    email: customerEmail,
+    firstname: customerName,
     amount: amount,
     channels: ["card"],
     publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
