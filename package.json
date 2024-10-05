@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@figspec/components": "^2.0.4",
     "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.2.7",
     "@types/imap": "^0.8.40",

@@ -7,12 +7,12 @@ import {
 import React, { useCallback, useState } from "react";
 import { PaystackButton } from "react-paystack";
 import { SuccessModal } from "./Modal";
-
 interface PaymentButtonProps {
   disabled: boolean;
   amount: number;
   text: string;
   onPaymentSuccess: () => void;
+  className?: string; // Optional className prop
 }
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
@@ -20,8 +20,9 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   amount,
   text,
   onPaymentSuccess,
+  className = "", // Default to an empty string if no className is passed
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     state,
     computedTotal,
@@ -31,11 +32,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     pendingBalance,
     showToast,
     setPendingBalance,
-    customerData
+    customerData,
   } = useMyContext();
 
-  const customerEmail = customerData?.email ? customerData.email : recipient
-  const customerName = customerData?.businessName ? customerData.businessName : clientName
+  const customerEmail = customerData?.email ? customerData.email : recipient;
+  const customerName = customerData?.businessName ? customerData.businessName : clientName;
 
   const paymentConfig = {
     reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
@@ -48,9 +49,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
 
   const selectedItems = Array.from(state.values());
 
-  const handlePaystackSuccessAction = async (
-    reference: Record<any, string>
-  ) => {
+  const handlePaystackSuccessAction = async (reference: Record<any, string>) => {
     try {
       const response = await fetch("/api/email", {
         method: "POST",
@@ -93,8 +92,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   const paymentProps = {
     ...paymentConfig,
     text,
-    onSuccess: (reference: Record<any, string>) =>
-      handlePaystackSuccessAction(reference),
+    onSuccess: (reference: Record<any, string>) => handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
 
@@ -102,13 +100,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     <>
       <PaystackButton
         {...paymentProps}
-        className={`py-4 w-full flex-grow px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200 ${
-          disabled ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
-        } text-white`}
+        className={` ${className}`}
         disabled={disabled}
       />
       <SuccessModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 };
+
 export default PaymentButton;

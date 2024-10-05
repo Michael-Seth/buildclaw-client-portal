@@ -1,15 +1,11 @@
 "use client"
-import DefaultLayout from "@/components/DashboardLayout";
 import React from "react";
 import { CardOne } from "@/components/Cards";
-import { fetchCustomers } from "@/lib/customers";
-import type { Metadata } from "next";
-import { notFound, usePathname } from "next/navigation";
+import {  usePathname } from "next/navigation";
 import { extractCustomerName } from "@/constants/utils/helpers";
+import dynamic from "next/dynamic";
 
-
-
-
+const FigmaRenderer = dynamic(() => import('../../../components/FigmaRenderer'), { ssr: false });
 
 const Dashboard = async () => {
 const pathName = usePathname();
@@ -64,6 +60,7 @@ const cardData = [
           />
         ))}
       </div>
+      <FigmaRenderer />
     </>
   );
 };

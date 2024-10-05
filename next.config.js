@@ -15,18 +15,18 @@ module.exports = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "https://brandmeals.com/blog/",
-        permanent: true,
-      },
-      // {
-      //   source: "/",
-      //   destination: "/evro-lifestyle/dashboard",
-      //   permanent: true,
-      // },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "https://brandmeals.com/blog/",
+  //       permanent: true,
+  //     },
+  //     // {
+  //     //   source: "/",
+  //     //   destination: "/evro-lifestyle/dashboard",
+  //     //   permanent: true,
+  //     // },
+  //   ];
+  // },
 };

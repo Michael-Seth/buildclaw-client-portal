@@ -155,7 +155,7 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
           <button
             type="button"
             onClick={clearForm}
-            className="py-4  px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200  bg-red-500 hover:bg-red-600
+            className="py-3 px-6 rounded-md items-center text-xs tracking-wide transition-colors duration-200  bg-red-500 hover:bg-red-600
              text-white"
           >
             Clear
@@ -163,11 +163,11 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
           <button
             type="submit"
             disabled={!isFormValid}
-            className={`py-4 flex justify-center gap-3 flex-grow flex-wrap flex-row px-8 rounded-md items-center text-sm tracking-wide transition-colors duration-200 ${
-              !isFormValid ? "bg-gray-400 cursor-not-allowed" : "bg-slate-900"
-            } text-white`}
+            className={`py-3 flex justify-center gap-3 flex-grow flex-wrap flex-row px-8 rounded-md items-center text-xs tracking-wide transition-colors duration-200 ${
+              !isFormValid ? "bg-[#FFEEEA] cursor-not-allowed text-gray-800" : "bg-[#9b4431] text-white"
+            } `}
           >
-            <span>SIGN</span>
+            <span>Sign Contract</span>
             <Check/>
           </button>
         </div>

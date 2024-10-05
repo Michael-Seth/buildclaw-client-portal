@@ -85,55 +85,10 @@ export async function POST(request: NextRequest) {
             clientName ? clientName : "Customer"
           },</h1>
           <p style="font-size: 14px; line-height: 2">Thank you for choosing Brandmeals! We are delighted to confirm your purchase of our services. Below is a summary of the services you have selected, including their descriptions and prices:</p>
-          <table style="width: 100%; border-radius: 10px; margin-top: 20px">
-            <thead>
-              <tr style="background-color: #691302; color: #ffffff">
-                <th style="padding: 10px; text-align: left">Selected Package</th>
-                <th
-                  style="
-                    padding: 10px;
-                    font-weight: 400;
-                    background-color: #f4f4f4;
-                    color: #2c2c2d;
-                    text-align: center;
-                  "
-                >
-                  ${selectedPackage ? selectedPackage?.name : ""}
-                </th>
-              </tr>
-              <tr style="background-color: #691302; color: #ffffff">
-                <th style="padding: 10px; text-align: left">Amount</th>
-                <th
-                  style="
-                    padding: 10px;
-                    font-weight: 400;
-                    background-color: #f4f4f4;
-                    color: #2c2c2d;
-                    text-align: center;
-                  "
-                >
-                  ${selectedPackage ? formatPrice(selectedPackage?.price) : ""}
-                </th>
-              </tr>
-            </thead>
-          </table>
-          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-              <thead>
-                  <tr style="background-color: #691302; color: #ffffff;">
-                      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Service</th>
-                      <th style="border: 1px solid #ddd; padding: 10px; text-align: right;">Price</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  ${itemsTableRows}
-              </tbody>
-          </table>
-          
-          
 
           <table style="width: 100%; border-radius: 10px; margin-top: 20px">
             <thead>
-              <tr style="background-color: #691302; color: #ffffff">
+              <tr style="background-color: #9b4431; color: #ffffff">
                 <th style="padding: 10px; text-align: left">Total</th>
                 <th
                   style="
@@ -147,13 +102,13 @@ export async function POST(request: NextRequest) {
                   ${total ? formatPrice(total) : ""}
                 </th>
               </tr>
-              <tr style="background-color: #691302; color: #ffffff">
+              <tr style="background-color: #9b4431; color: #ffffff">
                 <th style="padding: 10px; text-align: left">Status</th>
                 <th
                   style="
                     padding: 10px;
                     font-weight: 500;
-                    background-color: #0dbd59;
+                    background-color: #577f68;
                     color: #ffffff;
                     text-align: center;
                   "
@@ -161,7 +116,7 @@ export async function POST(request: NextRequest) {
                   ${status ? status : ""}
                 </th>
               </tr>
-              <tr style="background-color: #691302; color: #ffffff">
+              <tr style="background-color: #9b4431; color: #ffffff">
                 <th style="padding: 10px; text-align: left">Pending Balance</th>
                 <th
                   style="
