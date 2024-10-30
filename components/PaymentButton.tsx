@@ -11,6 +11,7 @@ interface PaymentButtonProps {
   disabled: boolean;
   amount: number;
   text: string;
+  ifBalance?: number;
   onPaymentSuccess: () => void;
   className?: string; // Optional className prop
 }
@@ -19,6 +20,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   disabled,
   amount,
   text,
+  ifBalance,
   onPaymentSuccess,
   className = "", // Default to an empty string if no className is passed
 }) => {
@@ -36,20 +38,24 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   } = useMyContext();
 
   const customerEmail = customerData?.email ? customerData.email : recipient;
-  const customerName = customerData?.businessName ? customerData.businessName : clientName;
-
+  const customerName = customerData?.businessName
+    ? customerData.businessName
+    : clientName;
+  const finalAmount = amount * 100;
   const paymentConfig = {
     reference: `txn_${Date.now()}_${Math.floor(Math.random() * 1000000)}`, // Unique reference
     email: customerEmail,
     firstname: customerName,
-    amount: amount,
+    amount: finalAmount,
     channels: ["card"],
     publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
   };
 
   const selectedItems = Array.from(state.values());
 
-  const handlePaystackSuccessAction = async (reference: Record<any, string>) => {
+  const handlePaystackSuccessAction = async (
+    reference: Record<any, string>
+  ) => {
     try {
       const response = await fetch("/api/email", {
         method: "POST",
@@ -61,9 +67,9 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
           subject: "Brandmeals - Service Payment Successful",
           items: selectedItems,
           selectedPackage,
-          total: computedTotal,
+          total: amount,
           status: "Paid",
-          pendingBalance,
+          pendingBalance: ifBalance && ifBalance,
           clientName,
         }),
       });
@@ -92,9 +98,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   const paymentProps = {
     ...paymentConfig,
     text,
-    onSuccess: (reference: Record<any, string>) => handlePaystackSuccessAction(reference),
+    onSuccess: (reference: Record<any, string>) =>
+      handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
+  console.log("pendingBalance", pendingBalance);
 
   return (
     <>
