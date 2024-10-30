@@ -47,7 +47,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
     email: customerEmail,
     firstname: customerName,
     amount: finalAmount,
-    channels: ["card"],
+    // channels: ["card"],
     publicKey: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
   };
 
