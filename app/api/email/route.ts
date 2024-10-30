@@ -25,142 +25,144 @@ export async function POST(request: NextRequest) {
     clientName,
   } = await request.json();
 
-  const itemsTableRows = items
-    .map(
-      (item: Item) => `
-    <tr>
-              <td style="padding: 10px">
-                <strong style="display: block; margin-bottom: 4px"
-                  >${item.serviceName}</strong
-                >
-                <span style="font-size: 14px; color: #2c2c2d"
-                  >${item.status}</span
-                >
-              </td>
-              <td style="padding: 10px; font-weight: 500; text-align: right">
-              ${formatPrice(item.price)}
-              </td>
-            </tr>
-  `
-    )
-    .join("");
+  const formattedDate = new Date()
+
+  // const itemsTableRows = items
+  //   .map(
+  //     (item: Item) => `
+  //   <tr>
+  //             <td style="padding: 10px">
+  //               <strong style="display: block; margin-bottom: 4px"
+  //                 >${item.serviceName}</strong
+  //               >
+  //               <span style="font-size: 14px; color: #2c2c2d"
+  //                 >${item.status}</span
+  //               >
+  //             </td>
+  //             <td style="padding: 10px; font-weight: 500; text-align: right">
+  //             ${formatPrice(item.price)}
+  //             </td>
+  //           </tr>
+  // `
+  //   )
+  //   .join("");
 
   const body = `<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body
-      style="
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          Helvetica, Arial, sans-serif;
-        background-color: #f4f4f4;
-        font-size: 15px;
-        margin: 0;
-        padding: 0;
-      "
-    >
-      <div
-        class="container"
-        style="
-          max-width: 600px;
-          margin: 0 auto;
-          background-color: #ffffff;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        "
-      >
-        <div class="header">
-          <img
-            src="https://brandmeals.com/wp-content/uploads/2024/07/Email-Header-min.png"
-            alt="Brandmeals Email Newsletter Header"
-            style="max-width: 100%"
-          />
-        </div>
-
-        <div class="content" style="padding: 30px; text-align: left; color: #111015">
-          <h2 style="color: #531507;">Thank You for Choosing Brandmeals!</h2>
-
-          <h1 style="color: #333333; font-size: large">Dear ${
-            clientName ? clientName : "Customer"
-          },</h1>
-          <p style="font-size: 14px; line-height: 2">Thank you for choosing Brandmeals! We are delighted to confirm your purchase of our services. Below is a summary of the services you have selected, including their descriptions and prices:</p>
-
-          <table style="width: 100%; border-radius: 10px; margin-top: 20px">
-            <thead>
-              <tr style="background-color: #9b4431; color: #ffffff">
-                <th style="padding: 10px; text-align: left">Total</th>
-                <th
-                  style="
-                    padding: 10px;
-                    font-weight: 500;
-                    background-color: #f4f4f4;
-                    color: #2c2c2d;
-                    text-align: center;
-                  "
-                >
-                  ${total ? formatPrice(total) : ""}
-                </th>
-              </tr>
-              <tr style="background-color: #9b4431; color: #ffffff">
-                <th style="padding: 10px; text-align: left">Status</th>
-                <th
-                  style="
-                    padding: 10px;
-                    font-weight: 500;
-                    background-color: #577f68;
-                    color: #ffffff;
-                    text-align: center;
-                  "
-                >
-                  ${status ? status : ""}
-                </th>
-              </tr>
-              <tr style="background-color: #9b4431; color: #ffffff">
-                <th style="padding: 10px; text-align: left">Pending Balance</th>
-                <th
-                  style="
-                    padding: 10px;
-                    font-weight: 500;
-                    background-color: #f4f4f4;
-                    color: #2c2c2d;
-                    text-align: center;
-                  "
-                >
-                  ${pendingBalance ? formatPrice(pendingBalance) : ""}
-                </th>
-              </tr>
-            </thead>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Brandmeals - Payment Confirmation</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f7f7f7;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f7f7f7; padding: 20px;">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; padding: 20px;">
+            <tr>
+              <td align="center" style="padding: 0;">
+                <img src="http://brandmeals.com/wp-content/uploads/2024/07/Email-Header-min.png" alt="Brandmeals" width="100%" />
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding: 20px;">
+                <h1 style="font-size: 24px; color: #333333;">Payment Confirmation</h1>
+                <p style="font-size: 16px; display: inline-block; background-color: #531507; padding: 7.5px 15px; border-radius: 2px; color: #ffffff; letter-spacing: 1px; margin: 0;"><b>PAID</b></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="height: 20px;"></td>
+            </tr>
+            <tr>
+              <td style="padding: 0 20px 20px 20px; font-size: 14px; color: #787878;">
+                <b style="color: #333333;">Dear ${clientName ? clientName : "Customer"},</b>
+                <p>Thank you for choosing Brandmeals! We are delighted to confirm your purchase of our services. Below is a summary of the services you have selected, including their descriptions and prices.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 0 20px;">
+                <table width="100%" cellpadding="5" cellspacing="0" border="0" style="font-size: 14px; color: #333333; border-collapse: collapse;">
+                  <tr style="background-color: #f1f1f1;">
+                    <td style="padding: 8px; text-align: left;" colspan="2">
+                      <b>Payment Status:</b> ${status ? "Successful" : "Failed"}
+                    </td>
+                    <td style="width: 33%;" colspan="1">
+                    </td>
+                    <td style="padding: 8px; text-align: left;" colspan="2">
+                      <b>Date:</b> ${formattedDate}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 20px;">
+                <table width="100%" cellpadding="5" cellspacing="0" border="0" style="font-size: 14px; color: #333333; border-collapse: collapse;">
+                  <thead>
+                    <tr style="background-color: #f14f2b; color: #ffffff;">
+                      <th style="padding: 10px; text-align: left;">Item</th>
+                      <th style="padding: 10px; text-align: right;">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background-color: #f9f9f9;">
+                      <td style="padding: 10px; text-align: left;">Website Design & Development</td>
+                      <td style="padding: 10px; text-align: right;">₦400,000</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                      <td style="padding: 10px; text-align: left;">Domian Name</td>
+                      <td style="padding: 10px; text-align: right;">₦0.00</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                      <td style="padding: 10px; text-align: left;">Web Host</td>
+                      <td style="padding: 10px; text-align: right;">₦0.00</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td style="height: 10px;"></td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; text-align: left;"><b>Total Amount:</b></td>
+                      <td style="padding: 10px; text-align: right;">₦400,000.00</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 20px;">
+                <table width="100%" cellpadding="5" cellspacing="0" border="0" style="font-size: 14px; color: #333333;">
+                  <tr>
+                    <td style="padding: 10px; text-align: left; vertical-align: top;">
+                      <b>Payment Type:</b><br>Debit Card
+                    </td>
+                    <td style="width: 33%; "></td>                    
+                    <td style="padding: 10px; text-align: left; vertical-align: top;">
+                      <b>Paid:</b> ${total ? formatPrice(total) : "-"}<br>
+                      <b>Balance Due:</b> ${pendingBalance ? formatPrice(pendingBalance) : "0.00"}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 30px; font-size: 14px; text-align: left; color: #747474;">
+                <p>If you have any questions or need further assistance, please don’t hesitate to reach out to us. We are always happy to assist you.</p><br>
+                <p style="text-align: center; font-size: 12px;">Thank you once again for your trust in Brandmeals. We look forward to supporting your success.</p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding: 40px; font-size: 14px; background-color: #531507; color: #ffffff; border-radius: 0 0 8px 8px;">
+                <p style="margin: 0;">&copy; 2024 Brandmeals || All rights reserved.</p>
+              </td>
+            </tr>
           </table>
-
-          <p style="margin-top: 20px; font-size: 14px; line-height: 2">If you have any questions or need further assistance, please don’t hesitate to reach out to us. We are here to help!</p>
-          <p style="margin-top: 20px; font-size: 14px; line-height: 2">Thank you once again for your trust in Brandmeals. We look forward to working with you and supporting your business’s success.</p>
-          
-          <p style="margin-top: 20px; line-height: 1.5; font-weight: 500;">Best regards,<br>
-          Joy Ehiedu<br>
-          Sales Manager<br>
-          Brandmeals<br>
-          <a href="tel:+2349133303018" style="color: #531507">09133303018</a></p>
-        </div>
-        <a
-          href="http://brandmeals.com/"
-          style="text-decoration: none; margin-top: 50px"
-          target="_blank"
-          ><div
-            class="footer"
-            style="
-              background-color: #531507;
-              color: #ffffff;
-              padding: 20px;
-              text-align: center;
-            "
-          >
-            <p>&copy; 2024 Brandmeals || All rights reserved.</p>
-          </div></a
-        >
-      </div>
-    </body>
-  </html>`;
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
 
   try {
     const transporter = nodemailer.createTransport({

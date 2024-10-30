@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import dynamic from "next/dynamic";
 import dashboard from "@/assets/images/LogoBrandMealsC.png";
 import Arrows from "@/assets/svgs/Arrow";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { formatPrice } from "@/constants/utils/helpers";
 import useMyContext from "@/constants/context/useMyContext";
@@ -17,14 +17,16 @@ const PaymentButton = dynamic(
 );
 
 export default function Invoice() {
-    const {  setPendingBalance, setComputedTotal } = useMyContext();
+  const { setPendingBalance, setComputedTotal } = useMyContext();
 
   const formRef = useRef<ContractSignHandles>(null);
   const computedTotal = 400000;
-  const payStackTotal = computedTotal * 100;
-  const payStackHalfTotal = (computedTotal / 2) * 100;
-  setComputedTotal(computedTotal)
-  setPendingBalance(payStackHalfTotal);
+  const payStackTotal = computedTotal;
+  const payStackHalfTotal = (computedTotal / 2);
+
+  useEffect(() => {
+    setComputedTotal(computedTotal);
+  }, [setComputedTotal]); // Dependencies are passed here to avoid warnings
 
   const [isPaymentButtonEnabled, setIsPaymentButtonEnabled] = useState(false);
   const [downloadButton, setDownloadButton] = useState(false);
@@ -260,7 +262,7 @@ export default function Invoice() {
                         </td>
                       </tr>
                       <tr
-                        className={`${styles.tm_border_top} ${styles.tm_border_bottom} text-gray-950 text-3xl`} 
+                        className={`${styles.tm_border_top} ${styles.tm_border_bottom} text-gray-950 text-3xl`}
                       >
                         <td
                           className={`${styles.tm_width_3} ${styles.tm_border_top_0} ${styles.tm_bold} ${styles.tm_f19} ${styles.tm_primary_color}`}
@@ -308,6 +310,7 @@ export default function Invoice() {
                     ? "bg-[#FFEEEA] cursor-not-allowed text-gray-800"
                     : "bg-[#9b4431] text-white"
                 }`}
+                ifBalance={payStackHalfTotal}
                 onPaymentSuccess={() => setDownloadButton(true)}
               />
               <PaymentButton
