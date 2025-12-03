@@ -2,16 +2,16 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'brandmeals.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "brandmeals.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
@@ -19,7 +19,7 @@ module.exports = {
     return [
       {
         source: "/",
-        destination: "https://brandmeals.com/blog/",
+        destination: "https://buildclaw.com",
         permanent: true,
       },
       // {

@@ -1,6 +1,7 @@
 "use client";
 import useMyContext from "@/constants/context/useMyContext";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
+import Link from "next/link";
 import {
   forwardRef,
   useEffect,
@@ -37,9 +38,9 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
     useEffect(() => {
       setIsFormValid(
         fullName.trim() !== "" &&
-          email.trim() !== "" &&
-          agreementChecked &&
-          sigCanvas.current?.isEmpty() === false
+        email.trim() !== "" &&
+        agreementChecked &&
+        sigCanvas.current?.isEmpty() === false
       );
     }, [fullName, email, agreementChecked]);
 
@@ -88,14 +89,14 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
         if (onFormDataChange) onFormDataChange(false);
       }
     };
-    
+
 
     return (
       <form onSubmit={handleSubmit} className="space-y-8">
         <label className="flex my-8 items-center gap-4">
           <div className="font-normal text-bases md:flex md:flex-row text-gray-900">
             <div className="flex flex-row justify-start">
-              <span>Name: </span>
+              <span className="text-sm">Name: </span>
               <span className="mx-4 w-56 border-b border-gray-500">
                 <input
                   type="text"
@@ -111,11 +112,11 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
         </label>
         <label className="flex my-8 items-center gap-4">
           <div className="font-normal text-bases flex items-end text-gray-900">
-            <span>Email: </span>
+            <span className="text-sm">Email: </span>
             <span className="mx-4 w-56 border-b border-gray-500">
               <input
                 type="email"
-                placeholder="yourEmail@example.com"
+                placeholder="email_address@example.com"
                 className="w-full opacity-100 active:opacity-100 focus:opacity-100 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -131,13 +132,13 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
           </p>
           <SignatureCanvas
             penColor="black"
-            canvasProps={{ className: "border border-gray-500 w-full h-36" }}
+            canvasProps={{ className: "border border-gray-500 w-full h-36 rounded" }}
             ref={sigCanvas}
           />
         </div>
         <label className="flex my-8 items-center gap-4">
           <div className="flex flex-row items-center">
-            <span className="cursor-pointer flex justify-center items-center mr-8 size-4 rounded border border-gray-500 hover:border-blue-300 hover:ring-1 hover:ring-blue-400 hover:shadow-lg focus:ring-1 focus:ring-blue-400 focus:shadow-lg active:ring-1 active:ring-blue-400 active:shadow-lg">
+            <span className="cursor-pointer flex justify-center items-center mr-2 size-4 rounded border border-gray-500 hover:border-blue-300 hover:ring-1 hover:ring-blue-400 hover:shadow-lg focus:ring-1 focus:ring-blue-400 focus:shadow-lg active:ring-1 active:ring-blue-400 active:shadow-lg">
               <input
                 type="checkbox"
                 className="opacity-0 size-4 checked:opacity-100"
@@ -146,29 +147,29 @@ const ContractSign = forwardRef<ContractSignHandles, ContractSignProps>(
                 onChange={() => setAgreementChecked(!agreementChecked)}
               />
             </span>
-            <p className=" cursor-pointer pl-1">
-              I agree to the terms of this contract
+            <p className="!mb-0 cursor-pointer pl-1">
+              I agree to the terms of this <Link href="/bayshore/contract" className="font-medium !underline !text-blue-600">contract</Link>
             </p>
           </div>
         </label>
-        <div className="flex justify-between mt-4">
+        <div className="flex align-start gap-4 mt-4">
           <button
             type="button"
             onClick={clearForm}
-            className="py-3 px-6 rounded-md items-center text-xs tracking-wide transition-colors duration-200  bg-red-500 hover:bg-red-600
+            className="py-3 px-6 flex justify-center gap-1 flex-wrap flex-row rounded-md items-center text-xs tracking-wide transition-colors duration-200  bg-red-500 hover:bg-red-600
              text-white"
           >
-            Clear
+            <span>Clear</span>
+            <X className="size-4" />
           </button>
           <button
             type="submit"
             disabled={!isFormValid}
-            className={`py-3 flex justify-center gap-3 flex-grow flex-wrap flex-row px-8 rounded-md items-center text-xs tracking-wide transition-colors duration-200 ${
-              !isFormValid ? "bg-[#FFEEEA] cursor-not-allowed text-gray-800" : "bg-[#9b4431] text-white"
-            } `}
+            className={`py-3 flex justify-center gap-3 flex-wrap flex-row px-8 rounded-md items-center text-xs tracking-wide transition-colors duration-200 ${!isFormValid ? "bg-[#fafdff]  border-[#7197ab] border text-gray-500 cursor-not-allowed" : "bg-[#0d7ebb] text-white"
+              } `}
           >
-            <span>Sign Contract</span>
-            <Check/>
+            <span>Submit payment</span>
+            <Check className="size-4" />
           </button>
         </div>
       </form>
